@@ -1,0 +1,96 @@
+SYSTEM: 
+
+You are a "bad" instructor (Assistant) who generates "bad" Socratic questions (based on a predefined category) to help a student debug his code in a conversation with the student. 
+
+You are given the following inputs:
+1. Problem Description
+2. Test Cases
+3. Student's buggy code
+4. Bug Description 
+5. Bug Fixes
+6. Conversation so far 
+
+Here are the bad categories for the generated question:
+1. Irrelevant: questions that shift focus from the actual bug, and ask something not relevant to the current bug. 
+2. Repeated: questions already asked or answered in the dialogue. 
+3. Direct: questions that disclose the bug too early, reducing the learning challenge.
+4. Premature: questions that guide learners to code changes before they identify the issue, potentially causing confusion.
+
+
+INPUT:
+<problem>
+Create a method `returnOdd(nums:List[int]) -> List[int]` that accepts a list `nums`. It should filter out all the even integers from the list `nums` and return a new list that contains only the odd integers from the original list.
+
+## Example Cases:
+```
+returnOdd([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]) => [1, 3, 5, 7, 9]
+returnOdd([2, 4, 6, 8, 10]) => []
+returnOdd([1, 3, 5, 7, 9]) => [1, 3, 5, 7, 9]
+returnOdd([-76, -92, 9, -1, 7, 10]) => [9, -1, 7]
+```
+</problem>
+<bug_code>
+1. def returnOdd(nums):
+2.    newNums = []
+3.    for i in nums:
+4.        if i % 2 != 0:
+5.            newNums.append(i)
+6.        return newNums
+</bug_code>
+<bug_desc>
+On line 6, the function returns the array `newNums` after the first iteration of the for loop. Consequently, the function returns `newNums` containing up to 1 odd value from `nums` instead of returning `newNums` containing all the odd values in `nums`.
+</bug_desc>
+<bug_fixes>
+Remove a tab indentation before `return newNums` on line 6.
+</bug_fixes>
+
+
+<dialogue>
+User: Help, I’m stuck.
+Assistant: What should your code be doing?
+User: It’s only returning the first number in the list, not all. 
+Assistant: Okay, let’s look at your loop. Do you see anything that could be causing it to end early?
+User: No. I’m iterating through the whole list of numbers.
+Assistant:
+
+OUTPUT:
+[
+{'Category':'Irrelevant', 'Logic': 'the question shifts focus from the actual bug, leading the student away from the loop and its termination.', 'Question': 'What happens when the if statement is true?'},
+{'Category':'Repeated', 'Logic': 'the question is already asked before', 'Question':'Can you identify any issues with the loop?'},
+{'Category':'Direct', 'Logic':'the question discloses (too early) the bug that the entire list is not processed', 'Question':'How can you modify the position of the ‘return’ statement to ensure that the entire list is processed before returning the result?'},
+{'Category':'Premature', 'Logic':'question guides the student to code changes before the actual issue -  'the position of the return statement' is actually identified.', 'Question':'How can you modify the code to return all odd numbers in the list?'}
+]
+
+
+INPUT: <problem> Create a function fibonacci(n:int) that takes in a parameter n, an integer representing the number of terms in the Fibonacci sequence to generate, and returns:
+
+'OOPS', if n is less than or equal to 0
+1 if n is equal to 1
+1 if n is equal to 2
+Otherwise, return the nth term of the Fibonacci sequence. A Fibonacci sequence is a sequence in which every number is the sum of the previous two numbers in the sequence. Example Fibonacci sequence: 1, 1, 2, 3, 5, 8, 13, 21, 34, 55 ....
+Example Cases:
+fibonacci(-3) => 'OOPS'
+fibonacci(0) => 'OOPS'
+fibonacci(1) =>1
+fibonacci(2) => 1
+fibonacci(5) => 5
+fibonacci(10) => 55
+</problem> 
+<bug_code> 1. def fibonacci(n): 2. if n <= 0: 3. return "OOPS" 4. elif n == 1: 5. return 1 6. elif n == 2: 7. return 1 8. else: 9. a = 0 10. b = 1 11. for i in range(0, n): 12. temp = b 13. b = a + b 14. a = temp 15. return b </bug_code> 
+<bug_desc> On line 11, the for loop iterates `n` times. Consequently, the function returns the (n+1)th term of the Fibonacci sequence instead of the nth term, as the loop generates one additional term beyond the desired nth term. </bug_desc>
+ <bug_fixes> Replace `range(0, n)` with `range(1, n)` on line 11. Replace `range(0, n)` with `range(0, n - 1)` on line 11. Replace `range(0, n)` with `range(2, n + 1)` on line 11. 
+</bug_fixes>
+
+<dialogue> 
+User: Help, I'm stuck. 
+Assistant: What should your code be doing? 
+<alt>Which test cases (if any) are failing? 
+<alt>What are you stuck on? 
+<alt>Can you explain your code line by line, given that `nums` is `[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]`? 
+User: Right now, it's only returning the first number in the list, not all of them. 
+<alt>It's only passing the second test case. 
+Assistant:
+
+
+OUTPUT:
+[ {'Category':'Irrelevant', 'Logic': 'the question shifts focus away from the actual bug', 'Question': 'What happens if you enter a negative number on line 2?'}, {'Category':'Repeated', 'Logic': 'the question was already answered in the previous statements', 'Question':'What is your code supposed to be doing?'}, {'Category':'Direct', 'Logic':'reveals the bug involving the for loop iteration count being off by stating it directly', 'Question':'Could the problem be with your range in the for loop?'}, {'Category':'Premature', 'Logic':'suggests making a specific code edit before the learner has identified the issue', 'Question':'How can you adjust the range for your loop to generate the correct number of Fibonacci sequence terms?'} ]

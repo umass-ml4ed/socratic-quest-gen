@@ -3,6 +3,7 @@ To prompt the LLMs for
 1. Bad Question Generation 
 2. Evaluating the Generated Questions  
 '''
+import os
 import openai 
 from openai.error import RateLimitError, Timeout, APIError, ServiceUnavailableError
 import time
@@ -12,7 +13,7 @@ def set_api_key():
     '''
     Set OpenAI API key
     '''
-    openai.api_key = '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'
+    openai.api_key = os.getenv('OPENAI')
 
 
 delay_time = 5

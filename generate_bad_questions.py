@@ -56,7 +56,19 @@ def main():
 
     store_results = defaultdict(list)
 
+    # check if results file already exists
+    if os.path.exists('bad_questions.json'):
+        with open('bad_questions.json', 'r') as infile:
+            store_results_load = json.load(infile)
+        
+    # copy store_results_load into store_results 
+    for key, value in store_results_load.items():
+        store_results[key] = value
+    
+
     for ctr, tr_file in tqdm(enumerate(os.listdir(train_path)), total=len(os.listdir(train_path))):
+        if tr_file in store_results.keys():
+            continue
         tr_file_path = os.path.join(train_path, tr_file)
         with open(tr_file_path, 'r') as f:
             conversation_data = f.read()
@@ -75,19 +87,18 @@ def main():
             for cctr, conversation in enumerate(all_input_conversation):
                 # construct input prompt 
                 input_prompt = problem_meta_data + '\n\n<dialogue>' + conversation + '\nOUTPUT:\n'
-                print('#### Input Prompt ####')
-                print(input_prompt)
+                # print('#### Input Prompt ####')
+                # print(input_prompt)
 
                 # generate bad question
                 llm_response = prompt_bad_question_generation(input_prompt)
-                print('#### LLM Response ####')
-                print(llm_response)
+                # print('#### LLM Response ####')
+                # print(llm_response)
                 store_results[tr_file].append(llm_response)
-        break
     
-    # save results
-    with open('bad_questions.json', 'w') as outfile:
-        json.dump(store_results, outfile, indent=6)
+        # save results
+        with open('bad_questions.json', 'w') as outfile:
+            json.dump(store_results, outfile, indent=6)
 
 if __name__ == '__main__':
     main()

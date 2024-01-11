@@ -28,6 +28,16 @@ def load_prompt():
     # return
     return system_message, few_shot_prompt
 
+def load_classification_prompt():
+    with open('classification_prompt.txt', 'r') as f:
+        prompt = f.read()
+    # extract system message - between SYSTEM and INPUT 
+    system_message = extract_text_in_tags(prompt, 'SYSTEM', 'INPUT').strip(':').strip()
+    # start from the first INPUT
+    few_shot_prompt = prompt[prompt.find('INPUT'):].strip('\n').strip()
+    # return
+    return system_message, few_shot_prompt
+
 def parse_question_output(ques_out):
     '''
     Converts a string of list into a python list

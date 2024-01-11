@@ -62,7 +62,8 @@ OUTPUT:
 ]
 
 
-INPUT: <problem> Create a function fibonacci(n:int) that takes in a parameter n, an integer representing the number of terms in the Fibonacci sequence to generate, and returns:
+INPUT: 
+<problem> Create a function fibonacci(n:int) that takes in a parameter n, an integer representing the number of terms in the Fibonacci sequence to generate, and returns:
 
 'OOPS', if n is less than or equal to 0
 1 if n is equal to 1
@@ -82,13 +83,12 @@ fibonacci(10) => 55
 </bug_fixes>
 
 <dialogue> 
-User: Help, I'm stuck. 
-Assistant: What should your code be doing? 
-<alt>Which test cases (if any) are failing? 
-<alt>What are you stuck on? 
-<alt>Can you explain your code line by line, given that `nums` is `[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]`? 
-User: Right now, it's only returning the first number in the list, not all of them. 
-<alt>It's only passing the second test case. 
+User: Hey, I really need help. This function is not returning the correct number.
+Assistant: I'll be happy to help you. What happens when you pass 5 as `count` to the function `fibonacci(5)`?
+	<alt>Happy to help. Can you give me an example of your function returning an incorrect number?
+	<alt>Sure. Can you list the first 5 numbers in the Fibonacci sequence?
+	<alt>Can you describe what your code does line by line?
+User: When I run the function with `n` as 5 the output is 8 instead of 5.
 Assistant:
 
 

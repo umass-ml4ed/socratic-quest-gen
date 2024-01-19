@@ -118,7 +118,7 @@ def main():
     for key, value in classification_results_load.items():
         all_turn_results[key] = value
     
-    for ctr, tr_file in tqdm(enumerate(os.listdir(train_path)), total=len(os.listdir(train_path))):
+    for ctr, tr_file in tqdm(enumerate(os.listdir(train_path)), total=len(os.listdir(train_path)), desc='Processing files'):
         # check if classification results already exists for this file
         if tr_file in all_turn_results:
             continue
@@ -143,7 +143,7 @@ def main():
 
             # TODO: Prompt LLM 
             # iterate over all input conversations
-            for turn_conv in all_input_conversation:
+            for turn_conv in tqdm(all_input_conversation, desc='Processing conversations', leave=False):
                 all_cat_results = []
                 for cat_conv in turn_conv: 
                     input_data = '\n\nINPUT:\n' + problem_meta_data + '\n\n<dialogue>' + cat_conv + 'Output:'

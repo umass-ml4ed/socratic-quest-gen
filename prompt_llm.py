@@ -78,10 +78,10 @@ def prompt_classification(input_data):
 
     try:
         response = openai.ChatCompletion.create(
-            model='gpt-4',
+            model='gpt-3.5-turbo-1106',
             messages=messages,
-            temperature=0.5,
-            max_tokens=1000,
+            temperature=0.0,
+            max_tokens=200,
         )
     except (RateLimitError, Timeout, APIError, ServiceUnavailableError) as exc:
         print(exc)

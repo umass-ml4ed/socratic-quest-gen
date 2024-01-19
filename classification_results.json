@@ -1,0 +1,116 @@
+{
+    "74_78_disney_vacation_club_socratic_dialogue.txt": [
+        [
+            "{'Irrelevant': 0, 'Repeated': 0, 'Direct': 0, 'Premature': 0, 'Good': 1, 'Incorrect':0}",
+            "{'Irrelevant': 0, 'Repeated': 0, 'Direct': 0, 'Premature': 0, 'Good': 1, 'Incorrect':0}",
+            "{'Irrelevant': 0, 'Repeated': 0, 'Direct': 1, 'Premature': 0, 'Good': 0, 'Incorrect':0}",
+            "{'Irrelevant': 0, 'Repeated': 0, 'Direct': 0, 'Premature': 1, 'Good': 0, 'Incorrect':0}"
+        ],
+        [
+            "{'Irrelevant': 1, 'Repeated': 0, 'Direct': 0, 'Premature': 0, 'Good': 0, 'Incorrect':0}",
+            "{'Irrelevant': 1, 'Repeated': 0, 'Direct': 0, 'Premature': 0, 'Good': 0, 'Incorrect':0}",
+            "{'Irrelevant': 0, 'Repeated': 0, 'Direct': 1, 'Premature': 0, 'Good': 0, 'Incorrect':0}",
+            "{'Irrelevant': 0, 'Repeated': 0, 'Direct': 1, 'Premature': 0, 'Good': 0, 'Incorrect':0}"
+        ],
+        [
+            "{'Irrelevant': 1, 'Repeated': 0, 'Direct': 0, 'Premature': 0, 'Good': 0, 'Incorrect':0}",
+            "{'Irrelevant': 0, 'Repeated': 1, 'Direct': 0, 'Premature': 0, 'Good': 0, 'Incorrect':0}",
+            "{'Irrelevant': 0, 'Repeated': 0, 'Direct': 1, 'Premature': 0, 'Good': 0, 'Incorrect':0}",
+            "{'Irrelevant': 0, 'Repeated': 0, 'Direct': 1, 'Premature': 0, 'Good': 0, 'Incorrect':0}"
+        ],
+        [
+            "{'Irrelevant': 1, 'Repeated': 0, 'Direct': 0, 'Premature': 0, 'Good': 0, 'Incorrect':0}",
+            "{'Irrelevant': 0, 'Repeated': 1, 'Direct': 0, 'Premature': 0, 'Good': 0, 'Incorrect':0}",
+            "{'Irrelevant': 0, 'Repeated': 0, 'Direct': 1, 'Premature': 0, 'Good': 0, 'Incorrect':0}",
+            "{'Irrelevant': 0, 'Repeated': 0, 'Direct': 0, 'Premature': 1, 'Good': 0, 'Incorrect':0}"
+        ],
+        [
+            "{'Irrelevant': 1, 'Repeated': 0, 'Direct': 0, 'Premature': 0, 'Good': 0, 'Incorrect':0}",
+            "{'Irrelevant': 0, 'Repeated': 0, 'Direct': 0, 'Premature': 0, 'Good': 1, 'Incorrect':0}",
+            "{'Irrelevant': 0, 'Repeated': 0, 'Direct': 1, 'Premature': 0, 'Good': 0, 'Incorrect':0}",
+            "{'Irrelevant': 0, 'Repeated': 0, 'Direct': 0, 'Premature': 1, 'Good': 0, 'Incorrect':0}"
+        ],
+        [
+            "{'Irrelevant': 1, 'Repeated': 0, 'Direct': 0, 'Premature': 0, 'Good': 0, 'Incorrect':0}",
+            "{'Irrelevant': 0, 'Repeated': 1, 'Direct': 0, 'Premature': 0, 'Good': 0, 'Incorrect':0}",
+            "{'Irrelevant': 0, 'Repeated': 0, 'Direct': 0, 'Premature': 0, 'Good': 1, 'Incorrect':0}",
+            "{'Irrelevant': 0, 'Repeated': 0, 'Direct': 0, 'Premature': 1, 'Good': 0, 'Incorrect':0}"
+        ],
+        [
+            "{'Irrelevant': 1, 'Repeated': 0, 'Direct': 0, 'Premature': 0, 'Good': 0, 'Incorrect':0}",
+            "{'Irrelevant': 0, 'Repeated': 1, 'Direct': 0, 'Premature': 0, 'Good': 0, 'Incorrect':0}",
+            "{'Irrelevant': 0, 'Repeated': 0, 'Direct': 1, 'Premature': 0, 'Good': 0, 'Incorrect':0}",
+            "{'Irrelevant': 0, 'Repeated': 0, 'Direct': 0, 'Premature': 1, 'Good': 0, 'Incorrect':0}"
+        ],
+        [
+            "{'Irrelevant': 1, 'Repeated': 0, 'Direct': 0, 'Premature': 0, 'Good': 0, 'Incorrect':0}",
+            "{'Irrelevant': 0, 'Repeated': 1, 'Direct': 0, 'Premature': 0, 'Good': 0, 'Incorrect':0}",
+            "{'Irrelevant': 0, 'Repeated': 0, 'Direct': 1, 'Premature': 0, 'Good': 0, 'Incorrect':0}",
+            "{'Irrelevant': 0, 'Repeated': 0, 'Direct': 0, 'Premature': 1, 'Good': 0, 'Incorrect':0}"
+        ],
+        [
+            "{'Irrelevant': 1, 'Repeated': 0, 'Direct': 0, 'Premature': 0, 'Good': 0, 'Incorrect':0}",
+            "{'Irrelevant': 0, 'Repeated': 1, 'Direct': 0, 'Premature': 0, 'Good': 0, 'Incorrect':0}",
+            "{'Irrelevant': 0, 'Repeated': 0, 'Direct': 0, 'Premature': 1, 'Good': 0, 'Incorrect':0}",
+            "{'Irrelevant': 0, 'Repeated': 0, 'Direct': 0, 'Premature': 1, 'Good': 0, 'Incorrect':0}"
+        ],
+        [
+            "{'Irrelevant': 1, 'Repeated': 0, 'Direct': 0, 'Premature': 0, 'Good': 0, 'Incorrect':0}",
+            "{'Irrelevant': 0, 'Repeated': 1, 'Direct': 0, 'Premature': 0, 'Good': 0, 'Incorrect':0}",
+            "{'Irrelevant': 0, 'Repeated': 0, 'Direct': 1, 'Premature': 0, 'Good': 0, 'Incorrect':0}",
+            "{'Irrelevant': 0, 'Repeated': 0, 'Direct': 0, 'Premature': 1, 'Good': 0, 'Incorrect':0}"
+        ]
+    ],
+    "0_5_fibonacci_socratic_dialogue.txt": [
+        [
+            "{'Irrelevant': 1, 'Repeated': 0, 'Direct': 0, 'Premature': 0, 'Good': 0, 'Incorrect':0}",
+            "{'Irrelevant': 0, 'Repeated': 0, 'Direct': 0, 'Premature': 0, 'Good': 1, 'Incorrect':0}",
+            "{'Irrelevant': 0, 'Repeated': 0, 'Direct': 1, 'Premature': 0, 'Good': 0, 'Incorrect':0}",
+            "{'Irrelevant': 0, 'Repeated': 0, 'Direct': 1, 'Premature': 0, 'Good': 0, 'Incorrect':0}"
+        ],
+        [
+            "{'Irrelevant': 1, 'Repeated': 0, 'Direct': 0, 'Premature': 0, 'Good': 0, 'Incorrect':0}",
+            "{'Irrelevant': 0, 'Repeated': 0, 'Direct': 0, 'Premature': 0, 'Good': 1, 'Incorrect':0}",
+            "{'Irrelevant': 0, 'Repeated': 0, 'Direct': 1, 'Premature': 0, 'Good': 0, 'Incorrect':0}",
+            "{'Irrelevant': 0, 'Repeated': 0, 'Direct': 1, 'Premature': 0, 'Good': 0, 'Incorrect':0}"
+        ],
+        [
+            "{'Irrelevant': 1, 'Repeated': 0, 'Direct': 0, 'Premature': 0, 'Good': 0, 'Incorrect':0}",
+            "{'Irrelevant': 0, 'Repeated': 0, 'Direct': 0, 'Premature': 0, 'Good': 1, 'Incorrect':0}",
+            "{'Irrelevant': 0, 'Repeated': 0, 'Direct': 1, 'Premature': 0, 'Good': 0, 'Incorrect':0}",
+            "{'Irrelevant': 0, 'Repeated': 0, 'Direct': 0, 'Premature': 1, 'Good': 0, 'Incorrect':0}"
+        ],
+        [
+            "{'Irrelevant': 1, 'Repeated': 0, 'Direct': 0, 'Premature': 0, 'Good': 0, 'Incorrect':0}",
+            "{'Irrelevant': 0, 'Repeated': 0, 'Direct': 1, 'Premature': 0, 'Good': 0, 'Incorrect':0}",
+            "{'Irrelevant': 0, 'Repeated': 0, 'Direct': 1, 'Premature': 0, 'Good': 0, 'Incorrect':0}",
+            "{'Irrelevant': 0, 'Repeated': 0, 'Direct': 0, 'Premature': 1, 'Good': 0, 'Incorrect':0}"
+        ]
+    ],
+    "17_47_topk_socratic_thread_1.txt": [
+        [
+            "{'Irrelevant': 0, 'Repeated': 0, 'Direct': 0, 'Premature': 0, 'Good': 1, 'Incorrect':0}",
+            "{'Irrelevant': 0, 'Repeated': 0, 'Direct': 0, 'Premature': 0, 'Good': 1, 'Incorrect':0}",
+            "{'Irrelevant': 0, 'Repeated': 0, 'Direct': 1, 'Premature': 0, 'Good': 0, 'Incorrect':0}",
+            "{'Irrelevant': 0, 'Repeated': 0, 'Direct': 1, 'Premature': 0, 'Good': 0, 'Incorrect':0}"
+        ],
+        [
+            "{'Irrelevant': 0, 'Repeated': 0, 'Direct': 0, 'Premature': 0, 'Good': 1, 'Incorrect':0}",
+            "{'Irrelevant': 0, 'Repeated': 1, 'Direct': 0, 'Premature': 0, 'Good': 0, 'Incorrect':0}",
+            "{'Irrelevant': 0, 'Repeated': 0, 'Direct': 1, 'Premature': 0, 'Good': 0, 'Incorrect':0}",
+            "{'Irrelevant': 0, 'Repeated': 0, 'Direct': 1, 'Premature': 0, 'Good': 0, 'Incorrect':0}"
+        ],
+        [
+            "{'Irrelevant': 1, 'Repeated': 0, 'Direct': 0, 'Premature': 0, 'Good': 0, 'Incorrect':0}",
+            "{'Irrelevant': 0, 'Repeated': 0, 'Direct': 0, 'Premature': 0, 'Good': 1, 'Incorrect':0}",
+            "{'Irrelevant': 0, 'Repeated': 0, 'Direct': 1, 'Premature': 0, 'Good': 0, 'Incorrect':0}",
+            "{'Irrelevant': 0, 'Repeated': 0, 'Direct': 1, 'Premature': 0, 'Good': 0, 'Incorrect':0}"
+        ],
+        [
+            "{'Irrelevant': 1, 'Repeated': 0, 'Direct': 0, 'Premature': 0, 'Good': 0, 'Incorrect':0}",
+            "{'Irrelevant': 0, 'Repeated': 0, 'Direct': 0, 'Premature': 0, 'Good': 1, 'Incorrect':0}",
+            "{'Irrelevant': 0, 'Repeated': 0, 'Direct': 1, 'Premature': 0, 'Good': 0, 'Incorrect':0}",
+            "{'Irrelevant': 0, 'Repeated': 0, 'Direct': 0, 'Premature': 1, 'Good': 0, 'Incorrect':0}"
+        ]
+    ]
+}

@@ -43,9 +43,9 @@ def construct_input_data(turns, all_bad_questions):
         # iterate over all previous turns 
         all_prev_turns = ''
         for prev_turn in turns[:ctr]:
-            all_prev_turns += prev_turn 
+            all_prev_turns += prev_turn + '\n'
         # construct input data
-        input_data = all_prev_turns + current_turn + 'Assistant Socratic Question: '
+        input_data = all_prev_turns + current_turn + '\nAssistant Socratic Question: '
         # TODO: add bad questions
         # parse bad questions 
         cat_wise_inp_data = [] 
@@ -56,6 +56,7 @@ def construct_input_data(turns, all_bad_questions):
         except json.decoder.JSONDecodeError:
             print(bad_questions)
             all_input_data.append(None) # add None to indicate that this example is not valid
+            continue
         # print(bad_questions)
         # print(clean_bad_questions)
         # sys.exit(0)
@@ -89,11 +90,8 @@ def process_questions(bad_questions):
 
 
 def main():
-    system_message, few_shot_prompt = load_classification_prompt()
-    # print('### System Message ###')
-    # print(system_message)
-    # print('### Few Shot Prompt ###')
-    # print(few_shot_prompt)
+    # set api key
+    set_api_key()
 
     data_path = 'socratic-debugging-benchmark/socratic_debugging_benchmark/v2_sigcse'
     train_path = os.path.join(data_path, 'train')
@@ -108,8 +106,22 @@ def main():
         print('Questions not generated')
         return
     
+    # store results
+    all_turn_results = defaultdict(list)
+
+    # check if classification results already exists
+    if os.path.exists('classification_results.json'):
+        with open('classification_results.json', 'r') as infile:
+            classification_results_load = json.load(infile)
+    
+    # copy classification_results_load into all_turn_results
+    for key, value in classification_results_load.items():
+        all_turn_results[key] = value
+    
     for ctr, tr_file in tqdm(enumerate(os.listdir(train_path)), total=len(os.listdir(train_path))):
-        print(tr_file)
+        # check if classification results already exists for this file
+        if tr_file in all_turn_results:
+            continue
         tr_file_path = os.path.join(train_path, tr_file)
         with open(tr_file_path, 'r') as f:
             conversation_data = f.read()
@@ -125,17 +137,25 @@ def main():
             assert len(turns) == len(bad_questions)
             # construct input data
             all_input_conversation = construct_input_data(turns, bad_questions) # list of list of strings
-            # print('#### Input Data ####')
-            # print(all_input_conversation)
+            # check if None is present in the list
+            if None in all_input_conversation:
+                print('None present in the list')
 
-            # # print stats
-            # print('Number of turns: ', len(turns))
-            # print('Number of bad questions: ', len(bad_questions))
-            # print('Number of input conversations: ', len(all_input_conversation))
-            # print('Number of examples within each input conversation: ', len(all_input_conversation[0]))
-            # print('Sample Last Conversation: ', all_input_conversation[-1][-1])
-        break
+            # TODO: Prompt LLM 
+            # iterate over all input conversations
+            for turn_conv in all_input_conversation:
+                all_cat_results = []
+                for cat_conv in turn_conv: 
+                    input_data = '\n\nINPUT:\n' + problem_meta_data + '\n\n<dialogue>' + cat_conv + 'Output:'
+                    # prompt LLM
+                    llm_response = prompt_classification(input_data)
+                    all_cat_results.append(llm_response)
+                all_turn_results[tr_file].append(all_cat_results)            
 
+        # store results as json 
+        with open('classification_results.json', 'w') as outfile:
+            json.dump(all_turn_results, outfile, indent=4)
 
+            
 if __name__ == '__main__':
     main()

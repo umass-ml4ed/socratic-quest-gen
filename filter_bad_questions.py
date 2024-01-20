@@ -45,6 +45,18 @@ def filter_bad_questions(bad_questions_list, classification_results_list):
     
     return valid_bad_questions
 
+def filter_separate(bad_questions_list, turn):
+    '''
+    Filter chatgpt questions separately
+    '''
+    valid_bad_questions = []
+    if turn == 0:
+        valid_bad_questions.extend(bad_questions_list[2:])
+    else:
+        valid_bad_questions.extend(bad_questions_list)
+    return valid_bad_questions
+
+
 
 def main():
     data_path = 'socratic-debugging-benchmark/socratic_debugging_benchmark/v2_sigcse'
@@ -69,7 +81,11 @@ def main():
     
     # to store valid questions
     all_turn_results = defaultdict(list)
+    process_separate = False 
     for ctr, tr_file in tqdm(enumerate(os.listdir(train_path)), total=len(os.listdir(train_path)), desc='Processing files'):
+        if tr_file == '64_65_count_ones_conversational_thread_1.txt':
+            process_separate = True
+
         # bad questions for this file
         bad_questions_file = bad_questions_dict[tr_file]
         # classification results for this file
@@ -85,7 +101,10 @@ def main():
             # assert length
             assert len(bad_questions_list) == len(classification_results_list)
             # filter bad questions 
-            valid_bad_questions = filter_bad_questions(bad_questions_list, classification_results_list)
+            if not process_separate:
+                valid_bad_questions = filter_bad_questions(bad_questions_list, classification_results_list)
+            else: 
+                valid_bad_questions = filter_separate(bad_questions_list, turn)
             # print('###'*10)
             # print(valid_bad_questions)
 

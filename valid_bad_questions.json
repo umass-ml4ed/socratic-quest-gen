@@ -3149,12 +3149,13 @@
     ],
     "64_65_count_ones_conversational_thread_1.txt": [
         [
-            "What happens if the list is empty?",
             "Are you sure you are iterating over all elements in the list?",
             "How can you modify your loop to iterate over all elements in the list?"
         ],
         [
+            "What happens if you pass an empty list to your function?",
             "Can you explain what your `for` loop does?",
+            "Why does your loop start at 1 instead of 0?",
             "How can you modify the range of your loop to include the first element of `integers`?"
         ],
         [
@@ -3164,6 +3165,9 @@
             "How can you adjust the range of your loop to include the first element of the list?"
         ],
         [
+            "What happens if the list is empty?",
+            "Can you tell me how many elements are in `range(1, len(integers))`?",
+            "Why are you starting your range from 1 and not 0?",
             "How can you modify the range in your for loop to start from 0 instead of 1?"
         ]
     ],
@@ -3193,9 +3197,8 @@
     ],
     "11_40_palindrome_conversational_thread_3.txt": [
         [
-            "What is the initial value of rev_string?",
-            "What does your code do?",
-            "Did you use the correct operator for comparison on line 5?"
+            "Did you use the correct operator for comparison on line 5?",
+            "How can you correct the syntax error on line 5?"
         ],
         [
             "How does the for loop reverse the string?",
@@ -3206,39 +3209,56 @@
         [
             "What happens if you enter a number instead of a string on line 1?",
             "Do you see any problems on line 1?",
-            "Are you using the correct operator to compare `rev_string` and `string` on line 5?"
+            "Are you using the correct operator to compare `rev_string` and `string` on line 5?",
+            "How would you correct the comparison operation on line 5?"
         ],
         [
             "What does the for loop on line 3 do?",
             "What does line 2 do?",
-            "Did you use the correct operator to compare rev_string and string on line 5?"
+            "Did you use the correct operator to compare rev_string and string on line 5?",
+            "How can you change the assignment operator to a comparison operator on line 5?"
         ],
         [
             "What is the purpose of having an empty string in the code?",
             "Can you explain what you are doing in the for loop?",
-            "Are you sure you are using the correct operator to compare the two strings on line 5?"
+            "Are you sure you are using the correct operator to compare the two strings on line 5?",
+            "What if you replace the = operator with == on line 5?"
         ],
         [
             "How would you write a function to check if a string is all lowercase letters?",
-            "What does the for-loop do?"
+            "What does the for-loop do?",
+            "Have you considered that the error might be in the if-statement where you are using = instead of ==?",
+            "Can you replace = with == on line 5 to check if two strings are equal?"
         ],
         [
-            "What is the length of the reversed string?"
+            "What is the length of the reversed string?",
+            "Do you see any problems with the if-statement?",
+            "Are you using the correct operator to compare the reversed string and the original string on line 5?",
+            "How can you change the assignment operator to a comparison operator on line 5?"
         ],
-        [],
         [
+            "How do you assign an empty string to the variable `rev_string`?",
+            "Do you see any problems with the if-statement?",
+            "Are you using the correct operator to compare `rev_string` and `string` on line 5?",
+            "How can you modify the code to correctly compare `rev_string` and `string`?"
+        ],
+        [
+            "How does the for loop reverse the string?",
+            "What is the first line of the if-statement supposed to be doing?",
             "Are you using the correct operator to compare the reversed string with the original string on line 5?",
             "How can you modify the operator on line 5 to correctly compare the reversed string with the original string?"
         ],
         [
-            "What does line 2 do?"
+            "How would you assign an empty string to the variable `rev_string`?",
+            "What does line 2 do?",
+            "Are you sure you are using the correct operator on line 5 to compare `rev_string` and `string`?",
+            "What would happen if you replaced the `=` operator with `==` on line 5?"
         ]
     ],
     "9_38_calculating_determinant_socratic_dialogue.txt": [
         [
-            "Have you considered using a different method to calculate the determinant instead of using submatrices?",
-            "Can you explain what your code is supposed to do?",
-            "Are you sure that the `subm2` and `subm3` variables are being defined as two-dimensional arrays as expected?"
+            "Are you sure that the `subm2` and `subm3` variables are being defined as two-dimensional arrays as expected?",
+            "How can you modify the definition of `subm2` and `subm3` to ensure they are two-dimensional arrays?"
         ],
         [
             "What happens if you input a 2x2 matrix instead of a 3x3 matrix?",
@@ -3248,14 +3268,13 @@
         ],
         [
             "Have you considered using numpy to calculate the determinant?",
+            "What are the intended inputs and outputs of the `det2d` function?",
             "Have you noticed that `subm2` is a one-dimensional array, while `det2d` expects a two-dimensional array?",
             "How can you modify `subm2` to be a two-dimensional array?"
         ]
     ],
     "63_64_good_dinner_socratic_dialogue.txt": [
         [
-            "What is your favorite type of pizza to eat on a weekend?",
-            "What is the issue with your code?",
             "Have you considered checking if the number of pizzas is between 10 and 20 on a weekday?",
             "How about adding a condition to check if the number of pizzas is greater than or equal to 10 and less than or equal to 20 when it is not a weekend?"
         ],
@@ -3298,53 +3317,54 @@
         [
             "What happens if you input a negative number for pizzas?",
             "What is your code supposed to be doing?",
-            "Could the problem be with your condition for the number of pizzas on a weekday?"
+            "Could the problem be with your condition for the number of pizzas on a weekday?",
+            "How can you adjust the condition for the number of pizzas on a weekday to be between 10 and 20 inclusive?"
         ]
     ],
     "58_59_splitting_apples_conversational_thread_2.txt": [
         [
-            "What happens if you enter a negative number for apples or children?",
-            "What is your code supposed to be doing?",
             "Could the problem be with your while loop condition?",
             "How can you adjust the condition in your while loop to make sure it doesn\u2019t exit early when apples are divisible by children?"
         ],
         [
             "What happens if you enter a negative number for the number of apples or children?",
+            "Can you explain your code to me, what is supposed to do, line by line?",
             "Could the problem be with your loop condition `apples > children`? Should it be `apples >= children` instead?",
             "How can you adjust the loop condition to ensure it doesn\"t exit early when `apples` is divisible by `children`?"
         ]
     ],
     "9_38_calculating_determinant_conversational_thread_1.txt": [
         [
-            "How do you calculate the determinant of a 2x2 matrix?",
-            "What is the purpose of the `det2d` function?",
             "Are `subm2` and `subm3` correctly formatted as two-dimensional arrays?",
             "How can you modify `subm2` and `subm3` to be two-dimensional arrays?"
         ],
         [
             "How is the determinant of a 2x2 matrix calculated?",
             "Can you explain what your helper function `det2d` is supposed to do?",
-            "Are you sure you are creating the submatrices correctly? Should `subm2` and `subm3` be two-dimensional arrays?"
+            "Are you sure you are creating the submatrices correctly? Should `subm2` and `subm3` be two-dimensional arrays?",
+            "Can you try changing the creation of `subm2` and `subm3` to be two-dimensional arrays?"
         ],
         [
             "What is the time complexity of your determinant function?",
+            "How do you calculate the determinant of a 2x2 matrix?",
+            "Did you make sure to create subm2 and subm3 as 2D arrays?",
             "How can you modify the code to create subm2 and subm3 as 2D arrays?"
         ]
     ],
     "4_25_removing_even_numbers_socratic_dialogue.txt": [
         [
-            "What does the modulo operator do in your code?",
-            "Can you explain what the error message says?"
+            "Do you think the return statement is correctly placed within the function scope?",
+            "How can you fix the indentation of the return statement to make it part of the function scope?"
         ],
         [
             "What is the purpose of the modulus operator in your code?",
-            "Do you know what the error SyntaxError: \"return\" outside function means?"
+            "Do you know what the error SyntaxError: \"return\" outside function means?",
+            "Can you see that your return statement is not indented correctly and is outside the function scope?",
+            "How can you modify the code to return the newNums list from within the function scope?"
         ]
     ],
     "69_81_get_combinations_socratic_dialogue.txt": [
         [
-            "What happens if you enter a list with more than 2 elements?",
-            "What is your code supposed to be doing?",
             "Could the problem be with the start of your inner loop?",
             "How can you adjust the range for your inner loop to include all elements in the list?"
         ],
@@ -3392,23 +3412,25 @@
         ],
         [
             "What is the purpose of the empty list `ans` that is created on line 2?",
-            "What iterator is made on line 4?"
+            "What iterator is made on line 4?",
+            "Do you see any issues with the start point of your second loop?",
+            "How can you modify the code to start the second loop from 0?"
         ],
         [
             "What happens if you pass an empty list to the function?",
             "What does the variable i stand for in the loop?",
+            "Do you realize that the second loop should start from 0, not from i?",
             "How can you modify the range of the second loop to start from 0?"
         ],
         [
             "What is the purpose of the empty list `ans` on line 2?",
             "What value does i start on, and what value does it stop on?",
-            "Is the second loop starting at the correct index?"
+            "Is the second loop starting at the correct index?",
+            "How can you modify the code to start the second loop at 0?"
         ]
     ],
     "10_39_xnglxsh_conversational_thread_1.txt": [
         [
-            "Did you consider the punctuation marks in the sentence?",
-            "What should your code be doing?",
             "Do you know that strings are immutable in Python and any modifications to them need to be reassigned?",
             "How can you modify the code to correctly replace characters in the string?"
         ],
@@ -3420,366 +3442,703 @@
         ],
         [
             "What are the ASCII values of the vowels?",
-            "What does the `.replace()` method do?"
+            "What does the `.replace()` method do?",
+            "Are you aware that strings are immutable in Python and any operations on them return a new string?",
+            "How can you modify the code to save the results of the `.replace()` and `.swapcase()` methods?"
         ],
         [
             "What happens if you enter a sentence without any vowels?",
             "What are some reasons the sentence could be staying the same?",
-            "Do you know that strings are immutable in Python and any operation that manipulates a string returns a new string?"
+            "Do you know that strings are immutable in Python and any operation that manipulates a string returns a new string?",
+            "How can you modify your code to ensure that the changes made by the replace and swapcase methods are saved?"
         ]
     ],
     "8_36_plot_function_conversational_thread_1.txt": [
         [
-            "What is the purpose of using 42 as the seed for the random number generator?",
-            "Can you explain what you are trying to achieve with the `map` function?",
             "Did you know that you cannot define a function using `def` inside the `map` function?",
             "How can you modify your code to define the function outside of `map` and then use it within `map`?"
         ],
         [
-            "What is the purpose of the seed in your code?"
+            "What is the purpose of the seed in your code?",
+            "Can you describe what you know about the `map` function so far with an example if possible?",
+            "Did you know that the `map` function does not allow defining functions using `def` inside it?",
+            "How about using a lambda function instead of defining a function inside the `map` function?"
         ],
-        [],
-        [],
-        [],
-        [],
-        [],
-        []
+        [
+            "Do you know the difference between `map` and `filter` functions in Python?",
+            "Can you explain what the `map` function does in Python?",
+            "Do you know that you cannot define a function inside `map` using `def`?",
+            "Have you considered replacing `def yOf(x):` with `lambda x:` on line 5?"
+        ],
+        [
+            "What does the `rand.seed(42)` do in your code?",
+            "What does the `def` keyword do in Python?",
+            "Do you know that the `def` keyword cannot be used inside the `map` function?",
+            "How can you replace the `def` keyword with `lambda` to define the function inside the `map` function?"
+        ],
+        [
+            "What is the purpose of the seed in line 2?",
+            "Can you explain to me what the `def` reserved word in Python does?",
+            "Did you know that defining a function inside of the map function is not supported by Python syntax?",
+            "How can you modify the code to define the function outside the map function?"
+        ],
+        [
+            "What do you know about the random number generator in Python?",
+            "Can you describe what your code does on line 5?",
+            "Do you know that defining a function using `def` inside a `map` function is invalid in Python?",
+            "How can you modify your code to define the function `yOf(x)` outside of the `map` function call?"
+        ],
+        [
+            "What happens when you call the random function?",
+            "Can you describe what your code does on line 5?",
+            "Can you identify the issue with defining a function inside the map function?",
+            "How can you modify the code to declare the function outside of the map function?"
+        ],
+        [
+            "What is the purpose of the random seed on line 2?",
+            "Can you describe what your code does on line 5?",
+            "Are you aware that you cannot define a function inside a map function in Python?",
+            "How can you modify your code to define the function `yOf(x)` outside of the `map` function call?"
+        ]
     ],
     "58_59_splitting_apples_conversational_thread_3.txt": [
         [
-            "How would your function behave if you input negative numbers?",
-            "What is your function supposed to do?",
             "Did you consider the scenario where the number of apples is exactly divisible by the number of children?",
             "How can you modify the condition in the while loop to include the case when the number of apples is exactly divisible by the number of children?"
         ],
         [
+            "What happens if you enter a negative number for the number of apples or children?",
+            "Can you explain to me what you are trying to do with the while loop?",
             "Could the problem be with your while loop condition `apples > children`? Should it be `apples >= children` instead?",
             "How can you adjust the while loop condition to ensure it doesn\"t exit early when `apples` is exactly divisible by `children`?"
         ]
     ],
     "0_2_fibonacci_socratic_dialogue.txt": [
         [
-            "What happens when n is equal to 1 or 2 in your code?",
+            "Could the problem be with your if condition on line 2 not accounting for 0?",
             "How can you modify the condition on line 2 to include 0?"
         ],
-        []
+        [
+            "What happens if you enter a number greater than 2 on line 2?",
+            "Can you walk me through your code step by step given that `n` is 0?",
+            "Could the problem be with your condition check for `n` on line 2?",
+            "How can you adjust the condition check for `n` on line 2 to correctly handle when `n` is 0?"
+        ]
     ],
     "16_46_substring_length_conversational_thread_3.txt": [
         [
-            "How does the find method work in Python?",
-            "What is your code supposed to be doing?"
+            "Have you considered checking the last substring that comes after the last occurrence of `t` in `s`?",
+            "How can you modify your code to also check the length of the last substring that comes after the last occurrence of `t` in `s`?"
         ],
         [
-            "What happens if the input string `s` is empty?"
+            "What happens if the input string `s` is empty?",
+            "Can you explain what each variable in your code is supposed to do?",
+            "Have you considered the case when the longest substring is at the end of the string `s`?",
+            "How can you modify your code to check for the longest substring at the end of the string `s`?"
         ],
-        [],
-        [],
-        [],
-        []
+        [
+            "What is the length of the string t?",
+            "What is the longest substring your code finds?",
+            "Have you considered checking the substring at the end of the string s?",
+            "How about adding code to check the substring at the end of the string after the while loop?"
+        ],
+        [
+            "What is the length of the substring dabra?",
+            "What is the longest substring your code finds and what is the correct substring?",
+            "Did you consider the case where the longest substring is at the end of the string?",
+            "Can you add a check after the while loop to compare the length of the last substring with max_len and update max_len if necessary?"
+        ],
+        [
+            "What happens if the string `t` is at the beginning of the string `s`?",
+            "What is the longest substring your code finds and what is the correct substring?",
+            "How can you modify the code to also consider the substring after the last occurrence of `t` in `s`?",
+            "How can you modify the code to check the length of the substring from the last occurrence of `t` to the end of `s`?"
+        ],
+        [
+            "What happens if string `t` is longer than string `s`?",
+            "Can you tell me what the variable `start` is supposed to do and how it is computed?",
+            "Have you considered the substring after the last occurrence of `t` in `s`?",
+            "How can you modify your code to consider the substring after the last occurrence of `t` in `s`?"
+        ]
     ],
     "14_43_used_twice_conversational_thread_1.txt": [
         [
-            "What happens when the character is not in the string?",
-            "Did you use the correct boolean values in Python?"
+            "Did you use the correct boolean values in Python?",
+            "How can you change your boolean values to the correct ones in Python?"
         ],
-        [],
         [
-            "What happens if you pass an empty string as the first parameter?"
+            "What is the length of the string you are using as input?",
+            "What is the difference between a boolean variable with the value of `False` versus a string variable with the value `False`?",
+            "What is the correct way to write boolean values in Python?",
+            "How can you modify the code to use the correct boolean values in Python?"
         ],
-        [],
         [
-            "What happens if you pass an empty string to your function?"
+            "What happens if you pass an empty string as the first parameter?",
+            "What are the two possible values of a boolean variable in Python?",
+            "Did you notice that you used lowercase true and false in your return statements instead of capitalized True and False?",
+            "How can you modify the code to return the correct boolean values?"
         ],
-        []
+        [
+            "What happens if you enter a number as the second argument instead of a character?",
+            "What is the difference between a boolean variable with the value of `False` versus a string variable with the value `False`?",
+            "Could the problem be with the boolean values you used in your return statements?",
+            "How can you adjust your return statements to use the correct boolean values?"
+        ],
+        [
+            "What happens if you pass an empty string to your function?",
+            "What are the two possible values of a boolean variable in Python?",
+            "Could the problem be with your use of lowercase boolean values in your return statements?",
+            "How can you modify your code to use capitalized boolean values in your return statements?"
+        ],
+        [
+            "What happens if you enter an empty string?",
+            "Can you explain the difference between a boolean variable with the value of `False` versus a string variable with the value `False` is?",
+            "Do you think the error could be due to the use of lowercase `true` and `false` instead of `True` and `False`?",
+            "How can you correct the boolean values in your code?"
+        ]
     ],
     "63_64_good_dinner_conversational_thread_2.txt": [
         [
-            "How many pizzas do you personally prefer to eat on weekends?",
-            "What is your function supposed to do?",
             "Have you checked if your function correctly handles the condition for a good dinner on weekdays when the number of pizzas is less than 10?",
             "How can you modify the elif condition to check if the number of pizzas is between 10 and 20 inclusive when it is not a weekend?"
         ],
         [
             "What happens if you input a negative number for pizzas?",
             "What is the number of pizzas that would make a dinner good during the weekend?",
+            "Do you think the condition for weekdays is correct in your code?",
             "How can you change the condition for weekdays to include a check for pizzas being greater than or equal to 10?"
         ],
         [
+            "What happens if you input a negative number for pizzas?",
+            "Can you describe the expected behavior when `weekend` is `True`?",
             "How would you modify the condition for the weekday scenario to include a lower limit for pizzas?",
             "How can you modify the code to return True when it is a weekday and pizzas is between 10 and 20 inclusive?"
         ],
         [
+            "What happens when the number of pizzas is 0?",
+            "When `weekend` is `False`, how many pizzas would make a dinner into a good dinner?",
+            "Do you think the condition for the number of pizzas during the week is correct in your code?",
             "How can you modify the condition for the number of pizzas during the week to include the lower bound?"
         ],
         [
+            "What is the type of the `weekend` variable?",
+            "What is the range of pizzas that would make a dinner into a good dinner when `weekend` is `False`?",
             "Could the problem be with your condition `pizzas <= 20 and not(weekend)`? Shouldn\u2019t it also check if `pizzas` is greater than or equal to 10?",
             "How can you modify the condition `pizzas <= 20 and not(weekend)` to also check if `pizzas` is greater than or equal to 10?"
         ],
         [
             "What happens if you enter a negative number for pizzas?",
+            "How would you check if `pizzas` is 10 or over?",
             "Could the problem be with your condition that checks if `pizzas` is less than or equal to 20 on a weekday?",
             "How can you adjust your condition to check if `pizzas` is between 10 and 20 on a weekday?"
         ],
         [
-            "How would you check if `pizzas` is 10 or over and how would you check if `pizzas` is 20 or under?"
+            "How would you convert a boolean into a number in Python?",
+            "How would you check if `pizzas` is 10 or over and how would you check if `pizzas` is 20 or under?",
+            "How can you modify the condition for the weekday to ensure that it checks for the number of pizzas to be between 10 and 20?",
+            "How can you modify the code to return true if the number of pizzas is between 10 and 20 for weekdays and more than 10 for weekends?"
         ],
         [
-            "What happens when `weekend` is `True` and `pizzas` is 10 or more?"
+            "What happens if you input a non-integer value for pizzas?",
+            "What happens when `weekend` is `True` and `pizzas` is 10 or more?",
+            "Do you think the condition for when `weekend` is `False` is correct in your code?",
+            "How can you modify your `elif` condition to check if `pizzas` is between 10 and 20 when `weekend` is `False`?"
         ]
     ],
     "1_8_calculating_a_grade_socratic_dialogue.txt": [
         [
-            "How does your code handle negative input values?",
             "Could the problem be with the condition in your first if statement?",
             "How can you adjust the condition in your first if statement to correctly assign an A grade?"
         ],
         [
+            "How are you calculating the final grade?",
+            "Where do you think the problem is?",
             "Is there a problem with the condition for assigning an A grade?",
             "How can you modify the condition to correctly assign an A grade?"
         ],
         [
             "What happens when you enter a negative grade for any of the parameters?",
+            "Can you explain what line 2 of your code does?",
             "On line 4, should you be comparing roundedScore to 90 with a greater than or equal to operator instead of a strictly greater than operator?",
             "How can you modify the code to correctly assign A to letterGrade when roundedScore is 90?"
         ],
         [
+            "What happens if you enter grades above 100 or below 0?",
+            "Where do you think the problem is?",
             "Could the problem be with your condition for assigning A grades?",
             "How can you adjust your if-statement to correctly assign A grades when the rounded score is exactly 90?"
         ],
         [
+            "What happens when the final score is zero?",
+            "Is the `finalScore` correct for that test case?",
             "Could the problem be with your if-statement on line 4 where you check if the rounded score is greater than 90?",
             "How can you modify the if-statement on line 4 to correctly classify a score of 90 as an A?"
         ],
         [
+            "What happens when you enter 0 for all the parameters?",
+            "Is the `finalScore` correct for that test case?",
             "Do you see any issues with the condition in the first if-statement?",
             "How can you modify the condition in the first if-statement to include 90?"
         ],
         [
+            "Have you considered what could happen if the input grades are negative?",
+            "Is the finalScore calculation correct?",
             "Did you notice that the condition on line 4 should be greater than or equal to 90, not just greater than 90?",
             "How about changing the condition on line 4 to check if roundedScore is greater than or equal to 90 instead of just greater than 90?"
         ],
         [
+            "What happens if you enter a negative number for any of the grades?",
+            "What does the first if-statement check?",
+            "Could the problem be with your condition for A grade? Should it be greater than or equal to 90 instead of strictly greater than 90?",
             "How can you adjust the condition for A grade to be greater than or equal to 90 instead of strictly greater than 90?"
         ],
         [
+            "What happens if you enter a grade over 100?",
+            "What is the first test case to fail?",
             "Could the problem be with your condition for assigning the letter grade A?",
             "How can you adjust the condition for assigning the letter grade A?"
         ],
-        []
+        [
+            "What would happen if the input grades were negative?",
+            "What is the first test case to fail?",
+            "Is the condition on line 4 correct? Should it be greater than or equal to 90 instead of just greater than 90?",
+            "How can you modify the condition on line 4 to correctly assign A when the rounded score is 90?"
+        ]
     ],
     "4_23_removing_even_numbers_socratic_dialogue.txt": [
         [
-            "Are you using any libraries in your code?"
+            "Are you using the correct operator to check if a number is divisible by 2?",
+            "How can you modify your code to use the modulus operator instead of division to check for even numbers?"
         ],
         [
             "What happens if you input an empty list?",
+            "What is the problem with your code?",
+            "Are you using the right operator to check if a number is even?",
             "How can you modify the operator in your if condition to correctly identify even numbers?"
         ],
         [
             "What happens when the input list is empty?",
+            "Can you explain your function to me line by line?",
+            "Are you sure about using the division operator in your condition?",
             "How can you modify the code to use the modulus operator instead of division?"
         ],
-        [],
         [
+            "What happens if you enter a negative number on line 4?",
+            "Can you explain what line 4 of your code does?",
+            "Are you sure using the division operator is the correct way to check if a number is even?",
+            "How about using the modulus operator to check if a number is even?"
+        ],
+        [
+            "What happens when the if statement is true?",
+            "Can you identify any issues with the loop?",
+            "How can you modify the position of the \u2018return\u2019 statement to ensure that the entire list is processed before returning the result?",
             "How can you modify the code to return all odd numbers in the list?"
         ]
     ],
     "4_23_removing_even_numbers_conversational_thread_1.txt": [
         [
-            "What is the length of the list you are providing as input?"
+            "Are you using the correct operator to check if a number is even or odd?",
+            "How can you modify the code to use the modulo operator instead of the division operator?"
         ],
-        [],
         [
+            "What happens if you enter a list with negative numbers?",
+            "Can you explain what the issue appears to be?",
+            "Are you using the correct operator to check if a number is even in your if condition on line 4?",
+            "What operator can you use to check if a number is even?"
+        ],
+        [
+            "Have you tried running your code with a list of negative numbers?",
+            "Can you walk me through your function line by line?",
+            "Have you considered using the modulo operator instead of division to check for even numbers?",
             "How can you modify the code to correctly identify even numbers?"
         ],
         [
+            "Can you explain how the `append` method works in Python?",
             "Can you explain what your if-statement on line 4 is doing?",
             "Are you sure that the division operation is the correct operation to check for even numbers?",
             "How can you modify the code to check for even numbers correctly?"
         ],
-        []
+        [
+            "What happens when the if statement is true?",
+            "Can you identify any issues with the loop?",
+            "How can you modify the position of the \u2018return\u2019 statement to ensure that the entire list is processed before returning the result?",
+            "How can you modify the code to return all odd numbers in the list?"
+        ]
     ],
     "5_30_sorted_words_socratic_dialogue.txt": [
         [
-            "What happens if you enter a string with no spaces?",
-            "Can you explain your code line by line?",
-            "How can you modify your code to remove duplicate words from your list?"
+            "How can you modify your code to remove duplicate words from your list?",
+            "How can you modify your code to convert your list to a set and then back to a list?"
         ],
-        []
+        [
+            "What happens if you enter a string with no spaces?",
+            "Does your code work for all the examples in the problem description or does it fail on some of them?",
+            "Have you considered using a set to remove duplicate words?",
+            "How about using a set to remove duplicates and then converting it back to a list?"
+        ]
     ],
     "16_46_substring_length_socratic_dialogue.txt": [
         [
-            "What happens when the input string does not contain the target string at all?",
-            "Can you tell me which test cases are failing?",
+            "Are you considering the case when the longest substring is at the end of the string?",
             "How can you modify your code to check for a substring at the end of the string?"
         ],
         [
             "What happens if the string `t` is not found in `s` at all?",
-            "Can you walk me through your code and explain what each variable is supposed to do?"
+            "Can you walk me through your code and explain what each variable is supposed to do?",
+            "How can you modify your code to check for the longest substring at the end of the string `s`?",
+            "How can you modify your code to check for the longest substring at the end of the string after the while loop?"
         ]
     ],
     "61_62_is_even_conversational_thread_2.txt": [
         [
-            "What are the data types of a and b?",
-            "What is your function supposed to do?",
+            "Have you considered checking if the sum is divisible by 2 instead of not divisible by 2?",
             "How can you modify the code to return True when the sum is even and False when it is odd?"
         ],
         [
+            "What happens if you input two negative numbers in the function?",
+            "What is your code supposed to be doing?",
+            "Could the problem be with your condition in the if statement?",
             "How can you adjust the condition in your if statement to check for even sums?"
         ],
         [
+            "What happens if you enter a negative number for a or b?",
+            "What is the output of `inputSum % 2` when `inputSum` is even?",
+            "Could the problem be with your condition `inputSum % 2 == 1` in the if statement?",
             "How can you adjust the condition in your if statement to check for even numbers?"
         ],
-        [],
-        []
+        [
+            "What if the sum of a and b is a negative number?",
+            "What does it mean when `inputSum % 2 == 1`?",
+            "Could the problem be that your condition is checking for an odd number instead of an even number?",
+            "How can you change the condition to return True when the sum is even?"
+        ],
+        [
+            "What happens if you enter a negative number as input?",
+            "What does the `inputSum % 2 == 1` condition mean?",
+            "Are you sure that `inputSum % 2 == 1` means that the sum is even?",
+            "Can you try changing the condition to `inputSum % 2 == 0`?"
+        ]
     ],
     "60_61_largest_number_conversational_thread_3.txt": [
         [
-            "Have you tried running your code with negative numbers?",
-            "Can you explain what your code is supposed to do?",
             "What happens when two of the numbers are equal?",
             "How would you modify the code to handle cases where two or more numbers are equal?"
         ],
         [
+            "What does the return statement do in a function?",
+            "Can you explain how your function works step by step?",
+            "How can you modify the comparison operators to handle equal numbers correctly?",
             "How can you modify the code to return the largest number when two numbers are equal?"
         ],
-        [],
-        [],
-        []
+        [
+            "What happens if you input negative numbers?",
+            "Can you explain how your function works step by step?",
+            "Have you considered what happens when two numbers are equal?",
+            "How can you modify your conditions to handle the case when two numbers are equal?"
+        ],
+        [
+            "What happens if you enter a negative number as an input?",
+            "Can you explain how your function works step by step?",
+            "Could the problem be with your comparison operators being > instead of >= ?",
+            "How can you adjust your comparison operators to correctly identify the largest number when the numbers are equal?"
+        ],
+        [
+            "How would you modify your function to handle non-integer inputs?",
+            "Can you explain how your function works step by step?",
+            "Have you considered using the greater than or equal to operator instead of greater than operator?",
+            "How about changing the > to >= in all the conditions?"
+        ]
     ],
     "0_5_fibonacci_conversational_thread_1.txt": [
-        [],
-        []
+        [
+            "Are you calling the fibonacci function with the same argument in your recursion?",
+            "How can you modify the recursive call to avoid infinite recursion?"
+        ],
+        [
+            "Can you tell me more about the conditions in your if and elif statements?",
+            "Can you explain what a recursive function is? When do we call a function recursive?",
+            "Why are you calling `fibonacci(n)` again in your recursive call?",
+            "How can you modify the recursive call to correctly compute the nth fibonacci number?"
+        ]
     ],
     "18_48_password_validator_conversational_thread_1.txt": [
         [
-            "What happens if you enter a menu choice other than v or a?",
-            "Can you tell me more about the error you\u2019re seeing?",
             "Why aren\u2019t you adding the password to the dictionary when the menu choice is a?",
             "How can you modify the code to add the password to the dictionary when the menu choice is a?"
         ],
         [
+            "What is the type of the variable menu_choice?",
+            "What does the error `KeyError: 4` mean and why does it occur?",
+            "Are you adding the new password to the dictionary when the menu choice is a?",
             "How can you add the new password to the dictionary when the menu choice is a?"
         ],
         [
+            "What happens if you enter a menu_choice other than v or a?",
+            "Can you walk me through what your code does line by line when `menu_choice` is `a`?",
             "Why are you not adding the password to the dictionary when the menu_choice is a?",
             "How can you modify your code to add the password to the dictionary when the menu_choice is a and the password does not already exist?"
         ],
-        []
+        [
+            "What is the purpose of using `values()` method on line 3 and 8?",
+            "Can you walk me through what your code does line by line when `menu_choice` is `a`?",
+            "Why are you not adding the new password to the dictionary when `menu_choice` is `a`?",
+            "How can you modify the code to add the new password to the dictionary when `menu_choice` is `a`?"
+        ]
     ],
     "8_36_plot_function_socratic_dialogue.txt": [
         [
-            "Have you considered using a for loop instead of map function?",
-            "What is the purpose of using the map function in your code?",
-            "Did you know that you can\u2019t define a function inside a map function using the def keyword?"
+            "Did you know that you can\u2019t define a function inside a map function using the def keyword?",
+            "How can you modify the code to define the function outside of the map function?"
         ],
         [
-            "What does the `rand.seed(42)` line do in your code?"
+            "What does the `rand.seed(42)` line do in your code?",
+            "Can you describe what the `map` function does?",
+            "Are you sure you can define a function inside the `map` function using the `def` keyword?",
+            "How can you modify your `map` function call to use a lambda function instead of `def`?"
         ],
         [
             "What does the random.seed(42) do in your code?",
+            "Can you describe what your code does on line 5?",
+            "Why are you defining a function inside the map function?",
             "How can you modify the code to correctly use the map function?"
         ],
-        [],
-        [],
-        [],
-        [],
-        [],
-        [],
         [
-            "What is the `map` function and how does it work?"
-        ],
-        [],
-        [],
-        [
-            "Can you describe what your code does on line 5?"
+            "How does the random number generator work in Python?",
+            "Can you explain to me what the `def` reserved word in Python does?",
+            "Are you aware that you cannot define a function using `def` inside a `map` function call?",
+            "How can you modify the function definition inside the `map` function to use a lambda function instead?"
         ],
         [
-            "Can you describe what your code does on line 5?"
+            "Did you import the random module correctly?",
+            "What does the `def` reserved word in Python do?",
+            "Are you aware that defining a function using `def` inside `map` is not allowed in Python?",
+            "Can you try defining the function outside the `map` call and see if that solves the issue?"
         ],
         [
-            "Can you point me to a line where you think you might want to pass a new parameter to `yOf`?"
+            "Can you explain how the random number generator works in Python?",
+            "Do you know what the `map` function takes in as parameters?",
+            "Do you realize that you cannot use `def` to define a function inside the `map` function?",
+            "How can you adjust your code to define the function `yOf(x)` outside of the `map` function call?"
         ],
-        [],
-        []
+        [
+            "What happens if you call the function with a negative number as the length?",
+            "What does the `def` keyword do in Python?",
+            "Are you aware that defining a function inside `map` is not valid in Python?",
+            "How can you modify the code to define the function `yOf(x)` outside of `map` and then use it as an argument to `map`?"
+        ],
+        [
+            "What happens if you use a different seed for the random number generator?",
+            "Can you describe what your code does on line 5?",
+            "Are you aware that defining a function inside the `map` function using `def` is not valid in Python?",
+            "How can you modify your code to define the function `yOf(x)` outside of the `map` function call?"
+        ],
+        [
+            "What is the purpose of the random seed in line 2?",
+            "Can you describe what your code does on line 5?",
+            "Are you sure that defining the function inside the map function is valid syntax in Python?",
+            "How can you modify your code to define the function outside of the map function?"
+        ],
+        [
+            "What does the `rand.seed(42)` do on line 2?",
+            "What is the `map` function and how does it work?",
+            "Did you know that you can\u2019t use `def` to define a function inside `map`? Instead, you should use `lambda` or define the function before the `map` call. Can you try that?",
+            "Can you try replacing `def yOf(x):` with `lambda x:` on line 5?"
+        ],
+        [
+            "What is the seed value for the random number generator? Why is 42 used?",
+            "Can you describe what your code does on line 5?",
+            "Do you think you can define a function inside the map function in Python?",
+            "How can you modify your code to define the function `yOf(x)` outside of the `map` function call?"
+        ],
+        [
+            "What is the purpose of using `rand.seed(42)` on line 2?",
+            "Can you describe what your code does on line 6?",
+            "How can you pass `len` as a parameter to `yOf` within the `map` function call?",
+            "How can you modify the code to pass `len` as a parameter to `yOf` within the `map` function call?"
+        ],
+        [
+            "What is the purpose of the random seed in your code?",
+            "Can you describe what your code does on line 5?",
+            "Do you think that the function definition inside the `map` function is causing the syntax error?",
+            "How can you modify the code to define the function outside the map function?"
+        ],
+        [
+            "What is the range function used for in Python?",
+            "Can you describe what your code does on line 5?",
+            "Do you know that Python does not support defining a function inside of the map function call?",
+            "How can you modify your code to define the function outside of the map function call?"
+        ],
+        [
+            "Can you explain how the random number generator works in Python?",
+            "Can you point me to a line where you think you might want to pass a new parameter to `yOf`?",
+            "Do you think defining a function inside the `map()` function is valid in Python?",
+            "How can you modify the code to define the function `yOf` outside of the `map` call?"
+        ],
+        [
+            "What does the `list` function do in your code?",
+            "What does `len` refer to on line 4?",
+            "Why do you think you are getting a syntax error on line 5?",
+            "How can you modify the code to pass `len` as a parameter to `yOf`?"
+        ],
+        [
+            "What is the purpose of the random seed in your code?",
+            "Can you describe what your code does on line 5?",
+            "Do you know that defining a function inside map using `def` is not valid?",
+            "How about using a lambda function instead of defining a function inside map?"
+        ]
     ],
     "56_15_compute_average_conversational_thread_2.txt": [
         [
-            "What happens if you enter negative numbers for x and y?",
-            "What is your code supposed to do?",
+            "Are you considering operator precedence in your equation?",
             "How can you use parentheses to correct the operator precedence?"
         ],
         [
-            "Could the problem be with the operator precedence in your return statement?"
+            "What happens if you enter a negative number as an argument?",
+            "What is the output when you run `calculate_average (2, 4)`?",
+            "Could the problem be with the operator precedence in your return statement?",
+            "How can you adjust the return statement to ensure the correct order of operations?"
         ],
         [
+            "What if x and y are negative numbers?",
+            "What does the function return when you run `calculate_average (2, 4)`?",
+            "Could the problem be with your operator precedence?",
             "How can you adjust the calculation to correctly compute the average of x and y?"
         ],
         [
+            "What data type are you expecting as input for the function?",
+            "Can you describe what line 2 is doing when `x` is 2 and `y` is 4?",
+            "Are you aware that division is performed before addition in Python?",
             "How can you modify the code to ensure that the addition operation is performed before the division operation?"
         ],
-        [],
-        [],
-        [],
-        []
+        [
+            "What is the return type of the function?",
+            "Can you describe what line 2 is doing when `x` is 2 and `y` is 4?",
+            "Are you considering the order of operations in your code?",
+            "How can you modify the code to ensure that the addition operation is completed first?"
+        ],
+        [
+            "What happens if you enter a negative number for x or y?",
+            "What does the function return when you run `calculate_average (2, 4)`?",
+            "Did you consider operator precedence when writing your code on line 2?",
+            "How can you modify the code to ensure addition is done before division?"
+        ],
+        [
+            "What happens if you enter a negative number for x or y?",
+            "Can you describe what line 2 is doing when `x` is 2 and `y` is 4?",
+            "Do you think the order of operations might be causing an issue in your code?",
+            "How can you adjust the parentheses in your code to correct the order of operations?"
+        ],
+        [
+            "What happens if you enter a negative number as one of the inputs?",
+            "What does the function return when you run `calculate_average (2, 4)`?",
+            "Do you think the order of operations could be causing this issue?",
+            "How can you modify the code to ensure that the sum of the two numbers is calculated before the division?"
+        ]
     ],
     "62_63_summing_between_integers_conversational_thread_1.txt": [
         [
-            "What is the initial value of num?",
             "Are you aware that the `range()` function excludes the upper bound in Python?",
             "How can you modify the code to include `high` in the sum?"
         ],
         [
+            "Can you explain what the += operator does in your code?",
+            "Can you explain how the `range()` function works in your loop?",
+            "Did you know that the `range()` function excludes the upper bound? How could this be affecting your code?",
             "How can you modify your code to include the upper bound in the sum?"
         ],
         [
+            "What do you think would happen if you replace the += operator with -= on line 4?",
+            "Can you tell me what the elements of that list would be?",
+            "Are you aware that the `range()` function in Python does not include the upper bound in the generated list of numbers?",
             "How can you modify the code to include the high value in the range?"
         ],
-        [],
-        [],
-        [],
-        [],
-        []
+        [
+            "What is the type of the variable num?",
+            "Do you understand how the range() function works?",
+            "Do you know that the range function does not include the upper limit?",
+            "How can you modify the range to include the high value?"
+        ],
+        [
+            "What happens if you enter a negative number on line 1?",
+            "What is the `range()` function returning in your code?",
+            "Could the problem be with your range function not including the upper bound?",
+            "How can you adjust the range function to include the upper bound in your loop?"
+        ],
+        [
+            "What is the data type of the variables `low` and `high`?",
+            "Can you explain how the `range()` function works?",
+            "Do you know that `range()` function does not include the upper bound?",
+            "How can you adjust the range in your loop to include the upper bound `high`?"
+        ],
+        [
+            "What happens when you change the value of `num`?",
+            "What does the `range()` function do?",
+            "Do you know that the range function in Python doesn\u2019t include the stop value?",
+            "How can you modify the range in your for loop to include the upper bound `high`?"
+        ],
+        [
+            "What happens when you change the value of `low` in your function?",
+            "Can you explain why you think that is the correct answer?",
+            "How can you modify the `range()` function to include the `high` value in the list?",
+            "How can you modify the code to include the `high` value in the range?"
+        ]
     ],
     "59_60_product_socratic_dialogue.txt": [
         [
-            "What function are you having trouble with?",
             "Did you remember to use the return statement in your function?",
             "How about adding a return statement before a * b?"
         ],
         [
             "Are you sure the inputs are integers?",
             "Can you explain what your function does again?",
+            "Are you returning the product of the two numbers in your function?",
             "How about adding a return statement before the multiplication operation?"
         ],
         [
-            "Can you explain your `Product()` function in detail?"
+            "What happens if you enter a negative number as an argument?",
+            "Can you explain your `Product()` function in detail?",
+            "Did you forget to include a return statement in your function?",
+            "How can you modify your function to return the product of the two numbers?"
         ],
         [
-            "Can you explain your `Product()` function in detail?"
+            "What happens when the function receives a string as an input?",
+            "Can you explain your `Product()` function in detail?",
+            "Did you forget to use the `return` statement in your function?",
+            "Can you modify your code to return the product of the two numbers?"
         ],
-        []
+        [
+            "What happens if you enter a negative number as a parameter?",
+            "Can you explain your `Product()` function in detail?",
+            "Could the problem be that you are not using the `return` keyword in your function?",
+            "How can you modify your code to include a `return` statement?"
+        ]
     ],
     "62_63_summing_between_integers_conversational_thread_3.txt": [
         [
-            "What happens if you enter a negative number as the low parameter?",
-            "What is your code supposed to be doing?",
             "Have you considered that your range might not be including the high parameter?",
             "How can you modify the range in your for loop to include the high parameter?"
         ],
         [
             "What happens if you enter a negative number for low or high?",
+            "What do you believe is returned from `range(0,1)`?",
+            "Are you aware that the `range()` function in Python doesn\u2019t include the endpoint?",
             "How can you modify the range in your for loop to include the upper bound?"
         ],
-        []
+        [
+            "What happens if you enter negative numbers for low and high?",
+            "What is the range function returning?",
+            "Did you consider that the range function is not inclusive of its second argument?",
+            "How can you adjust your range function to include the second argument?"
+        ]
     ],
     "74_77_disney_vacation_club_socratic_dialogue.txt": [
         [
-            "Have you considered how leap years might affect your calculations?",
-            "What is your code supposed to be doing?",
-            "Could the problem be with how you are calculating the new fee on line 6?"
+            "Could the problem be with how you are calculating the new fee on line 6?",
+            "How can you adjust the calculation on line 6 to correctly increase the fee by 1.5% each year?"
         ],
         [
+            "What happens if you enter a negative number as the target value?",
+            "What is your function supposed to do?",
             "Could the problem be with how you are calculating the new fee each year?",
             "How can you adjust the calculation of the new fee each year to increase it by 1.5%?"
         ],
@@ -3790,105 +4149,218 @@
             "How can you adjust the calculation on line 6 to correctly calculate the new fee?"
         ],
         [
+            "What is the purpose of the variable `years` in your code?",
+            "What happens on lines 2 and 3?",
+            "Have you checked the calculation in your loop? Is the fee increasing by 1.5% each year?",
             "How can you adjust the calculation in your loop to correctly increase the fee by 1.5% each year?"
         ],
         [
+            "What happens if you enter a negative target amount?",
+            "What does your function do on lines 2 and 3?",
+            "Are you sure you are calculating the new fee correctly on line 6?",
             "How can you modify the code to correctly calculate the new fee each year?"
         ],
         [
+            "What happens if you enter a negative number as the target amount?",
+            "What is your code supposed to be doing?",
             "Are you sure you are calculating the new fee correctly? Should it be 1.5% of the old fee or should it increase by 1.5%?",
             "How can you modify the code to increase the fee by 1.5% each year instead of setting it to 1.5% of the current fee?"
         ],
-        []
+        [
+            "What happens if the target amount is less than the initial amount?",
+            "What is your function supposed to do?",
+            "Are you sure that line 6 correctly calculates the new amount with interest?",
+            "How can you adjust the calculation on line 6 to correctly add the interest to the current amount?"
+        ]
     ],
     "62_63_summing_between_integers_socratic_dialogue.txt": [
         [
-            "Are the data types of your inputs correct?",
-            "What is the problem you are facing with your function?",
             "Have you considered that the range function does not include the upper bound in its output?",
             "Can you try changing high to high + 1 in your range function?"
         ],
-        [],
-        [],
-        [],
-        [],
-        [],
-        []
+        [
+            "Have you considered using a while loop instead of a for loop?",
+            "What do you think the range function is returning?",
+            "Are you aware that the range function in Python doesn\u2019t include the end value?",
+            "How can you modify the code to include the high limit in the sum?"
+        ],
+        [
+            "What happens if you enter negative numbers as input?",
+            "Can you tell me what the elements of the list returned by the range function would be?",
+            "Do you realize that the range function excludes the upper bound?",
+            "How about changing the upper bound of the range function to include the high parameter?"
+        ],
+        [
+            "Have you tried running your code with negative numbers?",
+            "What is the range function returning?",
+            "Do you think the range function might be causing the issue by not including the high value in the sum?",
+            "How can you modify the range function to include the high value in the sum?"
+        ],
+        [
+            "What would happen if you used a negative number for `low` or `high`?",
+            "Can you see where your code would make a mistake when taking the sum between 0 and 1?",
+            "Can you see why the `high` value is not included in your sum?",
+            "How can you modify the range to include `high` in your sum?"
+        ],
+        [
+            "How does the range function work with negative numbers?",
+            "Can you tell me what the elements of the list returned by range() would be?",
+            "Do you realize that the range function in Python does not include the upper bound?",
+            "How can you modify your range function to include the upper bound in the sum?"
+        ],
+        [
+            "What happens if you enter a negative number for low or high?",
+            "What does the range function return in your loop?",
+            "Could the problem be with your range not including the upper bound high?",
+            "How can you adjust the range in your loop to include the upper bound high?"
+        ]
     ],
     "56_15_compute_average_conversational_thread_1.txt": [
         [
-            "What are the data types of your input parameters?",
-            "What is the purpose of your function?",
-            "Are you considering operator precedence in your return statement?"
+            "Are you considering operator precedence in your return statement?",
+            "How can you modify the code to correctly calculate the average using parentheses?"
         ],
-        [],
-        [],
         [
+            "What happens if you pass negative numbers as parameters?",
+            "What does the function return when you run `calculate_average (2, 4)`?",
+            "Do you think the division operation is happening before the addition operation due to operator precedence?",
+            "Can you add parentheses around `x + y` to ensure that the addition operation happens before division?"
+        ],
+        [
+            "What data types are you using for x and y?",
+            "Can you describe what happens when you run your code using one of the example cases?",
+            "Did you consider operator precedence in your calculation?",
+            "How can you modify the code to calculate the correct average of x and y?"
+        ],
+        [
+            "What happens if you enter a negative number as one of the parameters?",
+            "Can you describe what line 2 is doing when `x` is 2 and `y` is 4?",
+            "Do you know how operator precedence could be affecting the calculation on line 2?",
             "How can you adjust the code on line 2 to ensure the sum of `x` and `y` is calculated before the division by 2?"
         ],
         [
+            "What happens if you pass in negative numbers to your function?",
+            "Can you describe what line 2 is doing when `x` is 2 and `y` is 4?",
+            "Do you think the division operation is being performed before the addition due to operator precedence?",
             "How can you modify the expression so that it evaluates `2 + 4` before `4 / 2`?"
         ],
-        [],
-        [],
-        []
+        [
+            "What happens if you enter negative numbers as inputs?",
+            "Can you describe what line 2 is doing when `x` is 2 and `y` is 4?",
+            "Do you think the operator precedence rules might be affecting your output?",
+            "How can you modify the expression to enforce the addition operation to be completed before the division operation?"
+        ],
+        [
+            "What happens if you input a string instead of a number?",
+            "Can you describe what line 2 is doing when `x` is 2 and `y` is 4?",
+            "Have you considered the order of operations in your calculation on line 2?",
+            "How can you modify the code to correctly calculate the average of x and y?"
+        ],
+        [
+            "Can you tell me what the type of x and y is?",
+            "Can you describe what line 2 is doing when `x` is 2 and `y` is 4?",
+            "Did you consider the order of operations when writing this line of code?",
+            "How can you modify the code to ensure the addition operation is performed before the division operation?"
+        ]
     ],
     "66_67_last_index_of_conversational_thread_2.txt": [
         [
-            "What happens if you pass an empty list as the array?",
-            "Can you explain what your code is supposed to do?",
-            "Could the problem be with your initial value of index?"
+            "Could the problem be with your initial value of index?",
+            "How can you adjust the initial value of index to handle cases where the value is not in the array?"
         ],
         [
             "What happens if you input an empty list into your function?",
-            "What would happen in the case that the integer you are searching for is not in the list?"
+            "What would happen in the case that the integer you are searching for is not in the list?",
+            "Should the index be initialized to a different value?",
+            "How would you modify your code to return -1 when the value is not in the array?"
         ],
-        [],
-        []
+        [
+            "What if the list contains negative numbers?",
+            "Can you explain what would happen in the case that the integer you are searching for is not in the list?",
+            "How can you modify the code to return -1 when value is not in array?",
+            "Can you initialize index to a value that would indicate value is not present in array?"
+        ],
+        [
+            "How would you modify your code to handle a list of strings instead of integers?",
+            "Can you explain what would happen in the case that the integer you are searching for is not in the list?",
+            "Have you considered initializing your index to -1 instead of 0?",
+            "Can you try initializing your index to -1 and see if that solves your problem?"
+        ]
     ],
     "22_53_cookie_purchase_socratic_dialogue.txt": [
         [
-            "What is the price of a single cookie?",
-            "What is the problem you are facing?",
             "Are you sure you\"re using the correct operator to check if the number of cookies is a multiple of 10?",
             "How can you modify the code to correctly check if the number of cookies is a multiple of 10?"
         ],
         [
+            "What happens if you enter a negative number for the cookies parameter?",
             "What seems to be the issue with your code?",
             "Could the problem be with the operator you used to check if cookies is a multiple of 10?",
             "How can you adjust the if condition to correctly check if cookies is a multiple of 10?"
         ],
         [
+            "What happens if you enter a negative number for cookies?",
             "Can you walk me through your function line by line?",
             "Should you be using division to check if the number of cookies is a multiple of 10?",
             "How can you modify the code to correctly check if the number of cookies is a multiple of 10?"
         ],
-        [],
-        []
+        [
+            "What happens if you enter a negative number for cookies?",
+            "Can you walk me through your function line by line?",
+            "Are you sure you should be using the division operator to check if a number is a multiple of 10?",
+            "What operator should you use instead of division to check if the number of cookies is a multiple of 10?"
+        ],
+        [
+            "What happens if the price of a cookie changes?",
+            "Can you walk me through your function line by line?",
+            "Are you sure that dividing by 10 is the right way to check whether a number is a multiple of 10?",
+            "Should you use the modulus operator instead of the division operator to check whether a number is a multiple of 10?"
+        ]
     ],
     "69_81_get_combinations_conversational_thread_1.txt": [
         [
-            "What is the type of the input list_c?"
+            "Have you considered starting the second loop from 0 instead of i?",
+            "How can you modify the code to include all combinations of the characters?"
         ],
-        [],
         [
+            "What is the purpose of using append function on line 5?",
+            "Can you explain what happens on line 2?",
+            "Have you considered starting the second loop from 0 instead of i on line 4?",
+            "Can you modify the second loop to start from 0 instead of i?"
+        ],
+        [
+            "What are the lengths of the strings in your input list?",
+            "What happens on line 2?",
+            "Why does your second loop start at index `i` instead of `0`?",
             "How can you adjust your second loop to include all possible combinations?"
         ],
         [
+            "What is the type of the variable `ans` on line 2?",
+            "What does the range function do on line 3?",
+            "Why does the second loop start at `i` instead of `0` on line 4?",
             "How can you modify the second loop to start at `0` instead of `i`?"
         ],
         [
-            "Could the problem be with your second loop starting at index i instead of 0?"
+            "What happens if you enter an empty list as an input?",
+            "What happens on line 2?",
+            "Could the problem be with your second loop starting at index i instead of 0?",
+            "How can you adjust the range for your second loop to start from 0?"
         ],
         [
+            "What happens when the if statement is true?",
+            "Can you identify any issues with the loop?",
+            "How can you modify the position of the \u2018return\u2019 statement to ensure that the entire list is processed before returning the result?",
             "How can you modify the code to return all odd numbers in the list?"
         ],
-        []
+        [
+            "What happens when the if statement is true?",
+            "Can you identify any issues with the loop?",
+            "How can you modify the position of the \u2018return\u2019 statement to ensure that the entire list is processed before returning the result?",
+            "How can you modify the code to return all odd numbers in the list?"
+        ]
     ],
     "1_10_calculating_a_grade_conversational_thread_3.txt": [
         [
-            "Did you consider adding a case for when the student has a grade above 100?",
-            "Can you explain what your code is supposed to do?",
             "Have you considered using the rounded score instead of the final score to determine the letter grade?",
             "How about replacing `finalScore` with `roundedScore` in your conditionals?"
         ],
@@ -3899,17 +4371,26 @@
             "How can you adjust your code to use the rounded score when determining the letter grade?"
         ],
         [
+            "What would happen if you used the round function with an additional parameter, like round(finalScore, 1)?",
+            "What is the value assigned to `finalScore` for the inputs provided?",
             "Could the problem be with your usage of `finalScore` instead of `roundedScore` when determining the `letterGrade`?",
             "How can you modify the code to use `roundedScore` instead of `finalScore` when determining the `letterGrade`?"
         ],
         [
+            "Can you explain how the `round` function works in Python?",
+            "What is the value assigned to `finalScore` on line 7 for the inputs provided?",
+            "Are you using the rounded score to determine the letter grade?",
             "Should you replace `finalScore` with `roundedScore` in the condition checks on lines 10, 12, 14, and 16?"
         ],
         [
+            "What happens if you enter a negative number on line 2?",
+            "What is the value assigned to `finalScore` on line 7 for the inputs provided?",
             "Could the problem be because you are using `finalScore` instead of `roundedScore` to determine the `letterGrade`?",
             "How can you adjust the if-elif-else conditions to use `roundedScore` instead of `finalScore`?"
         ],
         [
+            "What happens if you enter a negative number for any of the grades?",
+            "Can you explain the differences between `finalScore` and `roundedScore`?",
             "Could the issue be that you are using `finalScore` instead of `roundedScore` in your if-elif-else statement?",
             "How can you modify your if-elif-else statement to use `roundedScore` instead of `finalScore`?"
         ]

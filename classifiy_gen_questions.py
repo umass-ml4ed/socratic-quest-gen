@@ -16,6 +16,7 @@ from prompt_llm import *
 def parse_questions(bad_questions):
     '''
     parse all text occuring after 'Question' in the bad_questions
+    str -> list
     '''
     # # Define the regular expression pattern
     # # Define the regular expression pattern with re.DOTALL to match across multiple lines
@@ -77,6 +78,7 @@ def construct_input_data(turns, all_bad_questions):
 def process_questions(bad_questions):
     '''
     remove logic output
+    list -> list
     '''
     # # print('In Process Questions\n')
     # Remove 'Logic' parts using regular expression

@@ -28,11 +28,19 @@ def create_preference_data(good_outputs_list, valid_bad_questions):
             preference_data.append([good_output, bad_question])
     return preference_data
 
+def process_turn(turn):
+    '''
+    add a \n before every Assistant utterance
+    '''
+    turn = turn.replace('Assistant:', '\nAssistant:')
+    return turn
+
 def construct_preference_data(turns, valid_bad_questions):
     '''
     construct the input prompts and preference data
     '''
     all_input_data = []
+    all_good_outputs = []
     all_preference_data = []
     for ctr, turn in enumerate(turns):
         # strip the Assistant turn
@@ -47,14 +55,15 @@ def construct_preference_data(turns, valid_bad_questions):
         # iterate over all previous turns 
         all_prev_turns = ''
         for prev_turn in turns[:ctr]:
-            all_prev_turns += prev_turn 
+            all_prev_turns += process_turn(prev_turn) + '\n'
         # construct input data
-        input_data = all_prev_turns + current_turn_prompt + 'Assistant:\n'
+        input_data = all_prev_turns + current_turn_prompt + '\nAssistant: '
         # append data
         all_input_data.append(input_data)
+        all_good_outputs.append(good_outputs_list)
         all_preference_data.append(preference_data)
     
-    return all_input_data, all_preference_data
+    return all_input_data, all_good_outputs, all_preference_data
 
 
 def main():
@@ -67,6 +76,7 @@ def main():
     
     # create storage dictionaries 
     all_input_prompts = defaultdict(list)
+    all_good_outputs = defaultdict(list)
     all_preference_data = defaultdict(list)
     all_problem_metadata = defaultdict(list)
 
@@ -85,9 +95,10 @@ def main():
             # seperate turns
             turns = seperate_turns(dialouge)
             # construct preference data 
-            input_prompts, preference_data = construct_preference_data(turns, valid_bad_questions)
+            input_prompts, good_outputs, preference_data = construct_preference_data(turns, valid_bad_questions)
             # add to storage dictionaries
             all_input_prompts[tr_file] = input_prompts
+            all_good_outputs[tr_file] = good_outputs
             all_preference_data[tr_file] = preference_data
             all_problem_metadata[tr_file] = problem_meta_data
     
@@ -99,6 +110,10 @@ def main():
     # save input prompts
     with open(os.path.join(save_dir, 'input_prompts.json'), 'w') as outfile:
         json.dump(all_input_prompts, outfile, indent=4)
+    
+    # save good outputs
+    with open(os.path.join(save_dir, 'good_outputs.json'), 'w') as outfile:
+        json.dump(all_good_outputs, outfile, indent=4)
     
     # save preference data
     with open(os.path.join(save_dir, 'preference_data.json'), 'w') as outfile:

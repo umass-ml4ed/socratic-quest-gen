@@ -249,7 +249,6 @@ def add_params():
 
 
 def main():
-    print('#### WARNING: Using Pseudo Prompt ####')
     # add params
     args = add_params()
 
@@ -260,16 +259,11 @@ def main():
     # split into train and val (80-20)
     train_data, val_data = train_test_split(all_data, test_size=0.2, random_state=37)
 
-    # train_data = train_data[:5]
-    # val_data = val_data[:5]
-
     if args.wandb:
         print('NOT YET IMPLEMENTED')
     
     if args.sft:
         sft(args, train_data, val_data)
-
-
 
 
 if __name__ == '__main__':

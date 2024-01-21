@@ -10,6 +10,7 @@ import json
 from itertools import combinations
 import pandas as pd
 import numpy as np
+from sklearn.model_selection import train_test_split
 import torch
 from torch.utils.data import DataLoader, Dataset
 from transformers import TrainingArguments, Trainer, AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig
@@ -85,32 +86,26 @@ def get_model(base_model_name: str, model_name: Optional[str], pt_model_name: Op
 
 
 ######## DATA ########
+
 def construct_prompt(metadata, input_dialouge):
     '''
     return fixed prompt 
     '''
 
     fix_prompt = '''
-    You are an Assistant whose task is to generate a "socratic" question to help the User debug their code.
-    You are given the following inputs:
-    1. Problem Description
-    2. Test Cases
-    3. Student's buggy code
-    4. Bug Description 
-    5. Bug Fixes
-    6. Conversation (between User and Assistant) so far. 
+You are an Assistant whose task is to generate a "socratic" question to help the User debug their code. The generated question must not directly reveal the bug fix, and must be coherent with the conversation so far.
+You are given the following inputs:
+1. Problem Description and Test Cases (<problem>)
+2. Student's buggy code (<bug_code>)
+3. Bug Description (<bug_desc>)
+4. Bug Fixes (<bug_fixes>)
+5. Conversation (between User and Assistant) so far (<conversation>)
 
-    NOTE: 
-    Analyze the student code, the bug description and fix and generate a "socratic" question to help the User debug their code.
-    The generated question must not directly reveal the bug fix, and must be coherent with the conversation so far.
+Metadata:
+{}
 
-    Metadata:
-    {}
-
-
-    Conversation so far:
-    {}
-    '''.format(metadata, input_dialouge)
+<conversation>
+{}'''.format(metadata, input_dialouge)
     
     return fix_prompt
 
@@ -118,7 +113,7 @@ def construct_data():
     '''
     create a list of dictionaries for SFT
     '''
-    data_path = '../preference_data/'
+    data_path = 'preference_data/'
     # input prompts 
     with open(os.path.join(data_path, 'input_prompts.json'), 'r') as infile:
         input_dialouges_dict = json.load(infile)
@@ -135,22 +130,146 @@ def construct_data():
     for tr_file, metadata in tqdm(problem_metadata_dict.items(), total=len(problem_metadata_dict)):
         input_dialouges = input_dialouges_dict[tr_file]
         good_outputs_list = good_outputs_dict[tr_file]
-        for dialouge in input_dialouges:
+        for ctr, dialouge in enumerate(input_dialouges):
             # construct prompt
             fix_prompt = construct_prompt(metadata, dialouge)
-            for good_output in good_outputs_list:
+            # # fix_prompt = 'pseudo prompt change this'
+            for good_output in good_outputs_list[ctr]:
                 # append to all data
                 all_data.append({'prompt': fix_prompt, 'output': good_output})
     
     return all_data
 
+class QGSFTDataset(Dataset):
+    '''
+    QG Dataset
+    '''
+    def __init__(self, data: list):
+        self.data = data
+    
+    def __getitem__(self, index: int):
+        return self.data[index]
+
+    def __len__(self):
+        return len(self.data)
+
+class QGSFTCollator:
+    def __init__(self, tokenizer, test: bool):
+        self.tokenizer = tokenizer
+        self.test = test
+
+    def __call__(self, batch):
+        all_prompts = [sample["prompt"] for sample in batch]
+        prompts_tokenized = self.tokenizer(all_prompts, return_tensors="pt", padding=True)
+        if self.test:
+            return {
+                "input_ids": prompts_tokenized.input_ids.to(device),
+                "attention_mask": prompts_tokenized.attention_mask.to(device),
+                "meta_data": batch
+            }
+
+        # TODO: might be worth debugging this
+        all_inputs = [sample["prompt"] + sample["output"] + self.tokenizer.eos_token for sample in batch]
+        inputs_tokenized = self.tokenizer(all_inputs, return_tensors="pt", padding=True)
+        prompt_lens = prompts_tokenized.attention_mask.sum(dim=1)
+        labels = inputs_tokenized.input_ids.clone()
+        padding_mask = torch.arange(labels.shape[1]).repeat(labels.shape[0], 1) < prompt_lens.unsqueeze(1)
+        labels[padding_mask] = -100
+        labels = labels.masked_fill(inputs_tokenized.attention_mask == 0, -100)
+        return {
+            "input_ids": inputs_tokenized.input_ids,
+            "attention_mask": inputs_tokenized.attention_mask,
+            "labels": labels
+        }
+
+
+######## TRAINING ########
+
+def get_training_args(args):
+    return TrainingArguments(
+        output_dir=args.model_name,
+        num_train_epochs=args.epochs,
+        learning_rate=args.lr,
+        weight_decay=args.wd,
+        max_grad_norm=args.max_grad_norm or None,
+        per_device_train_batch_size=args.batch_size,
+        gradient_accumulation_steps=args.grad_accum_steps,
+        per_device_eval_batch_size=args.batch_size * 2,
+        eval_accumulation_steps=4,
+        warmup_ratio=0.1,
+        evaluation_strategy="epoch",
+        save_strategy="epoch",
+        save_total_limit=1,
+        load_best_model_at_end=True,
+        metric_for_best_model="loss",
+        greater_is_better=False,
+        remove_unused_columns=False,
+        report_to="wandb" if args.wandb else "none"
+    )
+
+def sft(args, train_data, val_data):
+    assert args.model_name
+    model, tokenizer = get_model(args.base_model, None, None, False, False)
+    trainer = Trainer(
+        model=model,
+        args=get_training_args(args),
+        train_dataset=QGSFTDataset(train_data),
+        eval_dataset=QGSFTDataset(val_data),
+        data_collator=QGSFTCollator(tokenizer, False)
+    )
+    trainer.train()
+    trainer.save_model()
+
+def add_params():
+    parser = argparse.ArgumentParser()
+    # Modes
+    parser.add_argument("--sft", action="store_true", help="Supervised finetuning for feedback generation")
+    parser.add_argument("--ppo", action="store_true", help="PPO training with reward model for feedback generation")
+    parser.add_argument("--dpo", action="store_true", help="DPO training with GPT-4 annotations for feedback generation")
+    parser.add_argument("--generate", action="store_true", help="Generate feedback with trained model")
+    # Settings
+    parser.add_argument("--base_model", type=str, default="codellama/CodeLlama-7b-Instruct-hf", help="Pre-trained base model path")
+    parser.add_argument("--model_name", type=str, help="Name of model to save for training or load for testing")
+    parser.add_argument("--pt_model_name", type=str, help="Name of pre-trained (SFT) model for RL training")
+    parser.add_argument("--beta", type=float, default=0.1, help="KL regularization coefficient for DPO training")
+    parser.add_argument("--mmo", type=int, default=1, help="Mismatch outer rate for DPO training")
+    parser.add_argument("--decoding", type=str, choices=["greedy", "sample"], default="greedy", help="Decoding strategy for generation")
+    parser.add_argument("--max_gen_tokens", type=int, default=128) # TODO: see what max size of question
+    parser.add_argument("--batch_size", type=int, default=2)
+    parser.add_argument("--grad_accum_steps", type=int, default=32)
+    parser.add_argument("--epochs", type=int, default=5)
+    parser.add_argument("--lr", type=float, default=3e-5, help="Learning rate")
+    parser.add_argument("--wd", type=float, default=0.0, help="Weight decay")
+    parser.add_argument("--max_grad_norm", type=float, default=1.0, help="Max gradient norm")
+    parser.add_argument("--wandb", action="store_true", help="Log performance to wandb")
+    args = parser.parse_args()
+
+    return args
+
+
 
 def main():
-    model, tokenizer = get_model('codellama/CodeLlama-7b-Instruct-hf', None, None, False, False)
+    print('#### WARNING: Using Pseudo Prompt ####')
+    # add params
+    args = add_params()
+
+    # model, tokenizer = get_model('codellama/CodeLlama-7b-Instruct-hf', None, None, False, False)
     # construct data
     print('#### Constructing Data ####')
     all_data = construct_data()
-    print(all_data[0])
+    # split into train and val (80-20)
+    train_data, val_data = train_test_split(all_data, test_size=0.2, random_state=37)
+
+    # train_data = train_data[:5]
+    # val_data = val_data[:5]
+
+    if args.wandb:
+        print('NOT YET IMPLEMENTED')
+    
+    if args.sft:
+        sft(args, train_data, val_data)
+
+
 
 
 if __name__ == '__main__':

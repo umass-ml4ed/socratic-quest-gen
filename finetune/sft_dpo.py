@@ -113,7 +113,7 @@ def construct_data():
     '''
     create a list of dictionaries for SFT
     '''
-    data_path = 'preference_data/'
+    data_path = 'preference_data/train/'
     # input prompts 
     with open(os.path.join(data_path, 'input_prompts.json'), 'r') as infile:
         input_dialouges_dict = json.load(infile)

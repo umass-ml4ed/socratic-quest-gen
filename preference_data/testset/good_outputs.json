@@ -1,0 +1,435 @@
+{
+    "15_44_sequential_search_conversational_thread_1.txt": [
+        [
+            "Sure. In the first test case, the input `x` is an element in the list `seq`. According to the problem description, what needs to be returned when `x` is an element of `seq`?",
+            "Sure. Can you tell me if you notice any difference between the first test case and the other test cases?",
+            "Sure. In the first test case, can you explain why the correct return value should be 1?",
+            "Sure. Let's consider the first test case, when the input `x` is 5 and the list `seq` has the value `[-1, 5, 8, 10, 12]`. When `i` takes the value 1 in line 2, what is the value of `seq[i],` and what happens when we run through the if on line 3?"
+        ],
+        [
+            "Good. How do you find the index of `x` in a list `seq`?",
+            "Good. Now, looking at your code, does it ever return an index `i` such that the element at that index is equal to `x`?",
+            "Good. If the current index is `i`, how do you determine if the element at position `i` in the list `seq` is equal to `x`?"
+        ],
+        [
+            "Good. Can you add code to do that?"
+        ]
+    ],
+    "24_29_factorial_conversational_thread_2.txt": [
+        [
+            "Sure. Can you tell me for what values of `n` it fails and what values it returns in those cases?"
+        ],
+        [
+            "Let\u2019s see what happens when `n` is 1. What is the first value that is assigned to variable `i` in line 5?",
+            "Let\u2019s see what happens when `n` is 1. Before line 6 is evaluated in the first iteration of the for loop, what are the values of the variables `fact` and `i`?",
+            "Let\u2019s see what happens when `n` is 1. Can you insert a new line between lines 5 and 6 that prints the values of the variables `fact` and `i`?",
+            "Let\u2019s see what happens when `n` is 1. What does `range(n)` do when `n` is 1?",
+            "Can you tell me what `range(n)` does?"
+        ],
+        [
+            "Let's examine what happens in this case. Open the Python shell and type `[i for i in range(1)]`. What do you see?",
+            "Let's investigate this further. Open the Python shell and type `for i in range(1): print(i)`. Press `Enter` twice to execute. What do you see?"
+        ],
+        [
+            "Good. Let's take a closer look. What is the first value of `i` in the for loop?",
+            "Correct. What do you notice about the first value of `i` in the for loop?",
+            "Notice that the value of `i` in the first iteration of the for loop is 0. How do you think this affects the value of `fact`?"
+        ],
+        [
+            "Good! How can we fix this issue?",
+            "Good. Now, what does a correct factorial sequence look like for `n=4`?"
+        ],
+        [
+            "Good! Let's test it. What is the factorial of 5?"
+        ],
+        [
+            "I am glad I could help. If you have any other questions, feel free to ask me."
+        ]
+    ],
+    "24_29_factorial_conversational_thread_3.txt": [
+        [
+            "Sure. Can you tell me for what values of n it fails and what values it returns in those cases?"
+        ],
+        [
+            "Let\u2019s see what happens when `n` is 1. What is the first value that is assigned to variable `i` in line 5?",
+            "Let\u2019s see what happens when `n` is 1. Before line 6 is evaluated in the first iteration of the for loop, what are the values of the variables `fact` and `i`?",
+            "Let\u2019s see what happens when `n` is 1. Can you insert a new line between lines 5 and 6 that prints the values of the variables `fact` and `i`?",
+            "Let\u2019s see what happens when `n` is 1. What does `range(n)` do when `n` is 1?",
+            "Can you tell me what `range(n)` does?"
+        ],
+        [
+            "Are you sure about that? Can you verify that the first value assigned to `i` is 1?"
+        ],
+        [
+            "How can you fix the code so that in the first iteration fact is multiplied with 1, not with 0?",
+            "Why do you think the first value is 0?"
+        ],
+        [
+            "How can you ensure that in the first iteration `fact` is multiplied with 1?"
+        ],
+        [
+            "Let\u2019s see if that works. Can you try it for `n = 1`?",
+            "Ok! Let's run the code for `n = 2` and see what happens."
+        ],
+        [
+            "Do you know why it still returns 0?",
+            "What do you think `range(n)` is doing to `i`?",
+            "Let\u2019s look at the terminal output. What value is `i` on line 7 when being printed?"
+        ],
+        [
+            "Let\u2019s see if that works. Can you try it for `n = 1`?",
+            "Ok! Let's run the code for `n = 2` and see what happens.",
+            "Did you try it for `n >=2`?"
+        ],
+        [
+            "Good. Can you try it for `n = 2` and `n = 3`?",
+            "Ok! Let's run the code for `n = 3` and see what happens.",
+            "Did you try it for `n >=2`?"
+        ],
+        [
+            "Good. How can you change the for loop so that the iterator variable `i` is not equal to 0 in the first iteration of the for loop?",
+            "What do you think `range(n)` is doing to `i`?",
+            "How can you edit the code so that `fact` is multiplied with 1, then 2, then 3?",
+            "What do you think you can do to make sure that `fact` is multiplied with 1, then 2, then 3?",
+            "How can you change the for loop so that the iterator variable `i` iterates starting from 1?"
+        ],
+        [
+            "Sounds good, let's try it for `n = 2` and `n = 3` again.",
+            "Did you try it again for `n >=2`?"
+        ],
+        [
+            "Awesome. Don't forget to remove the print statement before you submit your code.",
+            "Good! I\u2019m glad I could help. If you have any other questions, feel free to ask me again."
+        ],
+        [
+            "I\u2019m glad I could help. If you have any other questions, feel free to ask me again."
+        ]
+    ],
+    "6_34_turning_clockwise_conversational_thread_1.txt": [
+        [
+            "What is the error that you observe?",
+            "Let's start with a warm-up exercise. How do you assign the value \"N\" to a variable `compass_point`?",
+            "Can you describe what your code is trying to do?"
+        ],
+        [
+            "Can you describe what you are trying to do on line 2?",
+            "Ah. Can you show me how you would assign the value \"N\" to a variable `compass_point`?",
+            "What operator do you use to assign a value?",
+            "What operator do you use to check for equality?",
+            "Can you show me how you would assign the value 1 to a variable `x`?"
+        ],
+        [
+            "What operator do you use to check for equality?",
+            "Ah. Can you show me how you would assign the value \"N\" to a variable `compass_point`?",
+            "What operator do you use to assign a value?"
+        ],
+        [
+            "Ah. Can you show me how you would assign the value \"N\" to a variable `compass_point`?",
+            "Can you show me how you would assign the value 1 to a variable `x`?",
+            "What operator do you use to assign a value?"
+        ],
+        [
+            "Are you sure that you can use the same operator `=` for assignment and to check for equality?"
+        ],
+        [
+            "Good. Let me know if you have any other questions!"
+        ]
+    ],
+    "24_29_factorial_conversational_thread_1.txt": [
+        [
+            "Sure. Can you tell me for what values of `n` it fails and what values it returns in those cases?"
+        ],
+        [
+            "Let\u2019s see what happens when `n` is 1. What is the first value that is assigned to variable `i` in line 5?",
+            "Let\u2019s see what happens when `n` is 1. Before line 6 is evaluated in the first iteration of the for loop, what are the values of the variables `fact` and `i`?",
+            "Let\u2019s see what happens when `n` is 1. Can you insert a new line between lines 5 and 6 that prints the values of the variables `fact` and `i`?",
+            "Let\u2019s see what happens when `n` is 1. What does `range(n)` do when `n` is 1?",
+            "Can you tell me what `range(n)` does?"
+        ],
+        [
+            "That\u2019s right. So, what happens when `i` is 0?",
+            "Correct. Given that `i` is 0, what happens when line 6 is evaluated?"
+        ],
+        [
+            "That's right. Given that `i` is 0, what will the value of `fact` be after line 6 is executed?"
+        ],
+        [
+            "I am glad I could help. If you have any other questions, please let me know."
+        ]
+    ],
+    "15_44_sequential_search_conversational_thread_3.txt": [
+        [
+            "Sure. In the first test case, can you explain why the correct return value should be 1?",
+            "Sure. Can you tell me if you notice any difference between the first test case and the other test cases?",
+            "Sure. In the first test case, the input `x` is an element in the list `seq`. According to the problem description, what needs to be returned when `x` is an element of `seq`?",
+            "Sure. Let's consider the first test case, when the input `x` is 5 and the list `seq` has the value `[-1, 5, 8, 10, 12]`. When `i` takes the value 1 in line 2, what is the value of `seq[i],` and what happens when we run through the if on line 3?"
+        ],
+        [
+            "Good. Now, can you tell me what happens in your code for test example 1 when `i` takes the value 1? Start with line 3.",
+            "Good. Does your code ever test if the number `x` is present in the list?",
+            "Good. How can you determine, using code in Python, if a number `x` is present in a list `seq`?"
+        ]
+    ],
+    "15_44_sequential_search_conversational_thread_2.txt": [
+        [
+            "Sure. In the first test case, the input `x` is an element in the list `seq`. According to the problem description, what needs to be returned when `x` is an element of `seq`?",
+            "Sure. Can you tell me if you notice any difference between the first test case and the other test cases?",
+            "Sure. In the first test case, can you explain why the correct return value should be 1?",
+            "Sure. Let's consider the first test case, when the input `x` is 5 and the list `seq` has the value `[-1, 5, 8, 10, 12]`. When `i` takes the value 1 in line 2, what is the value of `seq[i],` and what happens when we run through the if on line 3?"
+        ],
+        [
+            "Good. Now, looking at your code, does it ever return an index `i` such that the element at that index is equal to `x`?",
+            "Good. How do you find the index of `x` in a list `seq`?",
+            "Good. If the current index is `i`, how do you determine if the element at position `i` in the list `seq` is equal to `x`?"
+        ]
+    ],
+    "15_45_sequential_search_socratic_dialogue.txt": [
+        [
+            "What inputs have you tried? When do you get `None`?",
+            "Do you notice a pattern with the cases that produce `None`?",
+            "When do you notice `None` as the output?",
+            "What inputs have you tried? When do you get `None`?",
+            "It seems that your function may be returning nothing in certain cases. Can you think of a case where this might happen?"
+        ],
+        [
+            "Interesting. Can you walk me through what `search(80, [-1, 57, 65])` looks like at each line of your code? What would you expect as the output?",
+            "Compare and contrast the successful example `search(-2, [-1, 57, 65])` with the failing example `search(80, [-1, 57, 65])` where your function returns None. Does anything about `x` and `seq` in these examples stand out to you?",
+            "What do you expect your code to return when `x` is bigger than the `seq` elements?"
+        ],
+        [
+            "What happens if `x` is not less than or equal to any element?",
+            "What does your code do if `x` is greater than all of the elements in `seq`?"
+        ],
+        [
+            "Good work. Let me know if you have any other questions."
+        ]
+    ],
+    "15_44_sequential_search_socratic_dialogue.txt": [
+        [
+            "Sure. In the first test case, can you explain why the correct returned value should be 1?",
+            "Sure. Can you tell me if you notice any difference between the first test case and the other test cases?",
+            "Sure. In the first test case, the input `x` is an element in the list `seq`. According to the problem description, what needs to be returned when `x` is an element of `seq`?",
+            "Sure. Let's consider the first test case, when the input `x` is 5 and the list `seq` has the value `[-1, 5, 8, 10, 12]`. When `i` takes the value 1 in line 2, what is the value of `seq[i],` and what happens when we run through `if` on line 3?"
+        ],
+        [
+            "Good. So the input element `x = 5` is present at some position `i = 1` in the list `seq`. Does your code check for this?",
+            "Good. What does your code do when position `i = 1`?"
+        ]
+    ],
+    "6_33_turning_clockwise_socratic_dialogue.txt": [
+        [
+            "Hi! Let's take a look at your code. Could you explain how your code works?",
+            "Hi! What makes you think that your program is not working properly?",
+            "Can you give me an example where your code does not return the correct result?",
+            "I see. Let\u2019s run your code with the function call `store = turn_clockwise(\"N\")` then print `store` and observe the output in the terminal. What do you see?",
+            "I see. Suppose we run your code with the function call `store = turn_clockwise(\"N\")`. What do you think the value of `store` will be after execution?"
+        ],
+        [
+            "What do you see as your output in the terminal and what are you passing as `compass_point`?",
+            "What makes the result incorrect? Can you give me an example including what you are passing in as `compass_point` and what you observe in the terminal?"
+        ],
+        [
+            "What does a unit test need from a function to ensure that the function works properly?",
+            "Ah. How did you determine whether your function is correct?",
+            "I see. Suppose we run your code with the function call `store = turn_clockwise(\"N\")`. What do you think the value of `store` will be after execution?",
+            "Is printing the same as returning a value?",
+            "Say you want to store the output of your function into a variable, what would you need to do?",
+            "What do you think a function needs to pass along its output to say get stored in a variable?"
+        ],
+        [
+            "Correct. So would you be able to store the value outputted by the function into say a variable?",
+            "Suppose we run your code with the function call `store = turn_clockwise(\"N\")`. What do you think the value of `store` will be after execution?",
+            "Is printing the same as returning a value?"
+        ],
+        [
+            "Suppose we run your code with the function call `store = turn_clockwise(\"N\")`. What do you think the value of `store` will be after execution?",
+            "Let\u2019s run your code with the function call `store = turn_clockwise(\"N\")` then print `store` and observe the output in the terminal. What do you see?"
+        ],
+        [
+            "Let\u2019s try it and then print `store`. What do you observe in your terminal?"
+        ],
+        [
+            "What do you think the function needs to have in order to give its output to the variable?",
+            "Do you recall, which reserved word in Python is used to return the output for a function back to a variable?"
+        ],
+        [
+            "Very good.",
+            "Very good. Is there a way for you to simplify your code?"
+        ]
+    ],
+    "24_29_factorial_socratic_dialogue.txt": [
+        [
+            "Sure. Can you tell me for what values of `n` it fails and what values it returns in those cases?"
+        ],
+        [
+            "Let\u2019s see what happens when `n` is 1. What is the first value that is assigned to variable `i` in line 5?",
+            "Let\u2019s see what happens when `n` is 1. Before line 6 is evaluated in the first iteration of the for loop, what are the values of the variables `fact` and `i`?",
+            "Let\u2019s see what happens when `n` is 1. Can you insert a new line between lines 5 and 6 that prints the values of the variables `fact` and `i`?",
+            "Let\u2019s see what happens when `n` is 1. What does `range(n)` do when `n` is 1?",
+            "Can you tell me what `range(n)` does?"
+        ],
+        [
+            "Are you sure about that? Can you verify that indeed the first value assigned to `i` is 1?",
+            "Can you explain why `i` will be equal to 1 during the first iteration of the for loop?",
+            "Let\u2019s assume that `i` is equal to 1 during the first iteration of the for loop. Given that `fact` is assigned the value 1 on line 4, how do you explain the function returning 0 when `n` is 1?"
+        ],
+        [
+            "Can you edit the code to print the value of `i` at each iteration of the for loop?",
+            "Can you look in the Python documentation to see what is the first value computed by range, when used with only one argument?",
+            "Let\u2019s consider this mathematically, `fact` is assigned the value of 1 on line 4. `fact` is multiplied by all values of `i` in a range. What value would `i` need to be for `fact` to be equal to 0 after the for loop?",
+            "Let\u2019s try it out on the terminal. Open the Python terminal using the `python` command. Then, type in a for loop similar to yours with `n` being 2. Then, in your for loop body, add in a print statement that prints `i`. What do you observe?",
+            "Let\u2019s open the debugger. Step through your code until you reach line 6 for the first time. What do you notice about the value of `i`?"
+        ],
+        [
+            "How can you fix the code so that in the first iteration `fact` is multiplied with 1, not with 0?",
+            "Why do you think the first value is 0?",
+            "Good! Can you explain how that makes the function return 0 for n = 1 or larger?",
+            "Good! What can you do now to fix the issue?"
+        ],
+        [
+            "Can you also try it with `n = 2` and `n = 3`?",
+            "Do you think your code will work for all values of `n`, for example `n = 3`?"
+        ],
+        [
+            "The code you edited in line 7 was supposed to multiply `fact` with `i + 1`. Does that code really multiply `fact` with `i + 1`?",
+            "Why is the code giving an incorrect answer for n = 3?",
+            "What should the output of factorial(3) be?"
+        ],
+        [
+            "You are welcome! Do not forget to remove the `print` statement and try it for other values of n as well."
+        ]
+    ],
+    "7_35_integer_grouping_socratic_dialogue.txt": [
+        [
+            "Sure. Let's try to see what happens with your dictionary values during the execution of the program. Inside the for loop, after line 4, can you add code that prints the key and the value stored in `results[key]`? Then evaluate the function on the list `[(1, 2), (1, 3)]` and tell me what you notice.",
+            "Sure. Can you evaluate the function twice, once on the list `[(1, 2), (1, 3)]`, and once on `[(1, 3), (1, 2)]`? Then see if you notice anything interesting.",
+            "Sure. Looking at the second test case, your code does not work well for keys that appear multiple times as the first elements in the input tuples. Can you say what happens on line 4 in your code the second time it sees 6 as a key? What is already stored in `result[key]` before line 4 is executed, and what will be stored in `result[key]` after line 4 is executed?",
+            "Sure. Looking at the second test case, let's say that the variable `results` already maps the key 2 to value `[7]`. What happens in line 4 when the variable `key` is 2 and the variable `value` is 5? To what value will the `result` map the key 2 after executing line 4?",
+            "Sure. Can you go through your code line by line and explain to me what each line is supposed to do?",
+            "Sure. Do you notice anything different about the second and third test cases that makes your code output the wrong result, when compared with the first test case?",
+            "Sure. Looking at the second test case and your code output for it, what is the value that it includes for key 2 in the result and what are the values that it ignores for the same key?",
+            "Sure. Let me ask you a warm-up question first. If you have a variable `a` that is initially assigned the value `[1]`, e.g., `a = [1]`, what value will it have after you evaluate the new assignment statement `a = [2]`?",
+            "Sure. Let me ask you a warm-up question first. If you have a variable `a` that is initially assigned the value `1`, e.g., `a = 1`, what value will it have after you evaluate the new assignment statement `a = 2`?"
+        ],
+        [
+            "Good observation. Can you now edit your code so that, if the key is already in the dictionary, it appends the new value for that key?",
+            "That is correct. Do you know how to append a new element to a list?"
+        ],
+        [
+            "Can you read in the Python documentation the section on the `dict` built-in type and see when `KeyError` is raised? Here is the link: https://docs.python.org/3/library/stdtypes.html#dict",
+            "Can you change your current code and in line 2 initialize `result = {1: 0}`, then run it on the same example and see if you notice anything different?",
+            "Do you know what happens when you try to get a value using a key that does not exist in the dictionary?"
+        ],
+        [
+            "Very good! Can you now remove the print statement and restore the test cases, so that you can verify your code passes all of them?"
+        ]
+    ],
+    "7_35_integer_grouping_conversational_thread_1.txt": [
+        [
+            "Sure. Can you go through your code line by line and explain to me what each line is supposed to do?",
+            "Sure. Can you evaluate the function twice, once on the list `[(1, 2), (1, 3)]`, and once on `[(1, 3), (1, 2)]`? Then see if you notice anything interesting.",
+            "Sure. Looking at the second test case, your code does not work well for keys that appear multiple times as the first elements in the input tuples. Can you say what happens on line 4 in your code the second time it sees 6 as a key? What is already stored in `result[key]` before line 4 is executed, and what will be stored in `result[key]` after line 4 is executed?",
+            "Sure. Looking at the second test case, let's say that the variable `results` already maps the key 2 to value `[7]`. What happens in line 4 when the variable `key` is 2 and the variable `value` is 5? To what value will the `result` map the key 2 after executing line 4?",
+            "Sure. Let's try to see what happens with your dictionary values during the execution of the program. Inside the for loop, after line 4, can you add code that prints the key and the value stored in `results[key]`? Then evaluate the function on the list `[(1, 2), (1, 3)]` and tell me what you notice.",
+            "Sure. Do you notice anything different about the second and third test cases that makes your code output the wrong result, when compared with the first test case?",
+            "Sure. Looking at the second test case and your code output for it, what is the value that it includes for key 2 in the result and what are the values that it ignores for the same key?",
+            "Sure. Let me ask you a warm-up question first. If you have a variable `a` that is initially assigned the value `[1]`, e.g., `a = [1]`, what value will it have after you evaluate the new assignment statement `a = [2]`?",
+            "Sure. Let me ask you a warm-up question first. If you have a variable `a` that is initially assigned the value `1`, e.g., `a = 1`, what value will it have after you evaluate the new assignment statement `a = 2`?"
+        ],
+        [
+            "Are you sure that line 4 adds the `value` to the list for that key? Can you try running `d = {1: [7]}` then `d[1] = [5]` in the interpreter and observing what happens?",
+            "What exactly in line 4 makes you think that `[value]` is appended to `results[key]`?",
+            "Are you sure the value is added to the list? Line 4 shows an assignment statement. According to the Python documentation: https://docs.python.org/3/library/stdtypes.html#dict, if `d` is a dictionary, then the assignment `d[k] = v` only sets `d[k] to have the value `v`."
+        ],
+        [
+            "I will give you a hint. Can you try running `d = {}` then `d[2] = {7}` in your interpreter window and tell me what happens?",
+            "Do you know what happens when you try to get a value using a key that does not exist in the dictionary?",
+            "Can you run your code on the input list `[(1, 1)]` and see what happens, then change your current code and in line 2 initialize `result = {1: 0}`, run it on the same list and see if you notice anything different?"
+        ],
+        [
+            "Can you look at the documentation using: https://docs.python.org/3/library/stdtypes.html#dict. It also shows some nice examples. Let me know if you cannot find it.",
+            "Sure, to determine if a key `k` is in a dictionary `d`, you use the in operator as in `k in d`, which returns True if the key `k` is in the dictionary, False otherwise."
+        ]
+    ],
+    "7_35_integer_grouping_conversational_thread_2.txt": [
+        [
+            "Sure. Let me ask you a warm-up question first. If you have a variable `a` that is initially assigned the value `1`, e.g., `a = 1`, what value will it have after you evaluate the new assignment statement `a = 2`?",
+            "Sure. Can you evaluate the function twice, once on the list `[(1, 2), (1, 3)]`, and once on `[(1, 3), (1, 2)]`? Then see if you notice anything interesting.",
+            "Sure. Looking at the second test case, your code does not work well for keys that appear multiple times as the first elements in the input tuples. Can you say what happens on line 4 in your code the second time it sees 6 as a key? What is already stored in `result[key]` before line 4 is executed, and what will be stored in `result[key]` after line 4 is executed?",
+            "Sure. Looking at the second test case, let's say that the variable `results` already maps the key 2 to value `[7]`. What happens in line 4 when the variable `key` is 2 and the variable `value` is 5? To what value will the `result` map the key 2 after executing line 4?",
+            "Sure. Let's try to see what happens with your dictionary values during the execution of the program. Inside the for loop, after line 4, can you add code that prints the key and the value stored in `results[key]`? Then evaluate the function on the list `[(1, 2), (1, 3)]` and tell me what you notice.",
+            "Sure. Do you notice anything different about the second and third test cases that makes your code output the wrong result, when compared with the first test case?",
+            "Sure. Looking at the second test case and your code output for it, what is the value that it includes for key 2 in the result and what are the values that it ignores for the same key?",
+            "Sure. Let me ask you a warm-up question first. If you have a variable `a` that is initially assigned the value `[1]`, e.g., `a = [1]`, what value will it have after you evaluate the new assignment statement `a = [2]`?",
+            "Sure. Can you go through your code line by line and explain to me what each line is supposed to do?"
+        ],
+        [
+            "So the value 1 that was in `a` is lost and overwritten with the new value '2'. Now, looking at the second test example, let's consider what happens in line 4 when the `(key, value)` tuple has value `(2, 7)`. What will be stored in `result[2]` after executing line 4?"
+        ],
+        [
+            "Good. Now, at the next iteration, the tuple `(key, value)` will contain `(2, 5)`. What will `result[2]` become after executing the assignment in line 4?"
+        ],
+        [
+            "Can you change your current code and in line 2 initialize `result = {1: [0], 2: [0], 3: [0]}`, then run it on the first example and see if it works this time? If yes, what do you think is the problem?",
+            "Can you read in the Python documentation the section on the `dict` built-in type and see when `KeyError` is raised? Here is the link: https://docs.python.org/3/library/stdtypes.html#dict",
+            "Do you know what happens when you try to get a value using a key that does not exist in the dictionary?"
+        ],
+        [
+            "That is correct. Can you change the code now so that whenever you append a value, the key is in the dictionary?",
+            "That is correct. Can you change the code so that it checks to see if the key is in the dictionary first and proceed correspondingly?"
+        ]
+    ],
+    "6_34_turning_clockwise_socratic_dialogue.txt": [
+        [
+            "What is the error that you observe?",
+            "Let's start with a warm-up exercise. How do you assign the value \"N\" to a variable `compass_point`?",
+            "Can you describe what your code is trying to do?"
+        ],
+        [
+            "Can you describe what you are trying to do on line 2?",
+            "Ah. Can you show me how you would assign the value \"N\" to a variable `compass_point`?",
+            "What operator do you use to assign a value?",
+            "What operator do you use to check for equality?",
+            "Can you show me how you would assign the value 1 to a variable `x`?"
+        ],
+        [
+            "What operator do you use to check for equality?",
+            "Ah. Can you show me how you would assign the value \"N\" to a variable `compass_point`?",
+            "What operator do you use to assign a value?"
+        ],
+        [
+            "Ah. Can you show me how you would assign the value \"N\" to a variable `compass_point`?",
+            "Can you show me how you would assign the value 1 to a variable `x`?",
+            "What operator do you use to assign a value?"
+        ],
+        [
+            "Are you sure that you can use the same operator `=` for assignment and to check for equality?"
+        ],
+        [
+            "Can you look in the Python documentation to see what operator is used to check for equality?"
+        ],
+        [
+            "Good job. Look good. Let me know if you have any more questions."
+        ]
+    ],
+    "15_45_sequential_search_conversational_thead_1.txt": [
+        [
+            "Can you walk me through how your function handles some simple examples? For example, `search(5, [-1, 5, 8, 10, 12])`.",
+            "Do you notice a pattern with the cases that produce `None`?",
+            "When do you notice `None` as the output?",
+            "What inputs have you tried? When do you get `None`?",
+            "It seems that your function may be returning nothing in certain cases. Can you think of a case where this might happen?"
+        ],
+        [
+            "I see. What happens when you have a larger `x` value? Try `search(20, [-1, 5, 8, 10, 12])`.",
+            "I see. What about when your `x` is not less than or equal to any elements?",
+            "That seems right. How do you deal with negative numbers and numbers greater than all the list elements?",
+            "Good. Is there a case where your function might not return anything?"
+        ],
+        [
+            "It looks like you just need to handle that other case then. What's a good answer to return when `x` is greater than all the existing elements?",
+            "Where would you want to insert an element that is larger than all the current ones?",
+            "What's a good place to insert 20 in the example I gave you?"
+        ]
+    ]
+}

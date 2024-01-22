@@ -1,3 +1,5 @@
 # .gitignore
 codellama_sft_b1/
 codellama_sft_b2/
+codellama_*/
+wandb/

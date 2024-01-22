@@ -54,7 +54,7 @@ def construct_preference_data(turns, valid_bad_questions=None, split_path='train
         for prev_turn in turns[:ctr]:
             all_prev_turns += process_turn(prev_turn) + '\n'
         # construct input data
-        input_data = all_prev_turns + current_turn_prompt + '\nAssistant: '
+        input_data = all_prev_turns + current_turn_prompt + '\nSocratic Guiding Assistant: '
         # append data
         all_input_data.append(input_data)
         all_good_outputs.append(good_outputs_list)

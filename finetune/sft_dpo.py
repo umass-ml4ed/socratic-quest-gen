@@ -6,6 +6,7 @@ Perform standard fine-tuning and direct preference optimization (DPO) on the pre
 from typing import Optional
 import argparse
 import os
+import sys
 import json
 from itertools import combinations
 import pandas as pd
@@ -93,27 +94,28 @@ def construct_prompt(metadata, input_dialouge):
     '''
 
     fix_prompt = '''
-You are an Assistant whose task is to generate a "socratic" question to help the User debug their code. The generated question must not directly reveal the bug fix, and must be coherent with the conversation so far.
-You are given the following inputs:
+[INST] Generate "socratic" guidance as a "Socratic Guiding Assistant" to help the User debug their code. The generated guidance must help the User realize their bug. The guidance must not directly reveal the bug fix, and must be coherent with the conversation so far.
+You are given the following metadata:
 1. Problem Description and Test Cases (<problem>)
 2. Student's buggy code (<bug_code>)
 3. Bug Description (<bug_desc>)
 4. Bug Fixes (<bug_fixes>)
-5. Conversation (between User and Assistant) so far (<conversation>)
+5. Conversation (between User and Assistant) so far (<CONVERSATION>)[/INST]
 
-Metadata:
+<METADATA>
 {}
+</METADATA>
 
-<conversation>
+<CONVERSATION>
 {}'''.format(metadata, input_dialouge)
     
     return fix_prompt
 
-def construct_data():
+def construct_data(split_path: str):
     '''
     create a list of dictionaries for SFT
     '''
-    data_path = 'preference_data/train/'
+    data_path = os.path.join('preference_data', split_path)
     # input prompts 
     with open(os.path.join(data_path, 'input_prompts.json'), 'r') as infile:
         input_dialouges_dict = json.load(infile)
@@ -136,7 +138,7 @@ def construct_data():
             # # fix_prompt = 'pseudo prompt change this'
             for good_output in good_outputs_list[ctr]:
                 # append to all data
-                all_data.append({'prompt': fix_prompt, 'output': good_output})
+                all_data.append({'prompt': fix_prompt, 'output': good_output+'</CONVERSATION>'})
     
     return all_data
 
@@ -220,6 +222,73 @@ def sft(args, train_data, val_data):
     trainer.train()
     trainer.save_model()
 
+def generate(args):
+    '''
+    Generate guidance using the trained model
+    '''
+    # construct test data
+    test_data = construct_data(split_path='testset')[:20]
+
+    assert args.model_name
+
+    model, tokenizer = get_model(args.base_model, args.model_name, args.pt_model_name, False, True)
+    # print('Maximum context length:', model.config.max_position_embeddings) 16k tokens
+    # print('eos token: ', tokenizer.eos_token) # </s>
+    tokenizer.padding_side = "left"
+    test_dataset = QGSFTDataset(test_data)
+    test_loader = DataLoader(test_dataset, batch_size=args.batch_size, collate_fn=QGSFTCollator(tokenizer, True))
+    generate_args = {"do_sample": False} if args.decoding == "greedy" else {"do_sample": True, "top_p": 0.9, "temperature": 1.0}
+    results = []
+    for batch in tqdm(test_loader):
+        output_ids = model.generate(
+            input_ids=batch["input_ids"],
+            attention_mask=batch["attention_mask"],
+            pad_token_id=tokenizer.eos_token_id,
+            max_new_tokens=args.max_gen_tokens,
+            **generate_args
+        )
+        preds = tokenizer.batch_decode(output_ids[:, batch["input_ids"].shape[1]:], skip_special_tokens=False)
+        results += [{**sample, "prediction": pred} for sample, pred in zip(batch["meta_data"], preds)]
+        # results += [{"prediction": pred} for pred in preds]
+    results_df = pd.DataFrame(results)
+    if not os.path.exists('results'):
+        os.makedirs('results')
+    results_df.to_csv(f"results/qg_results_{args.model_name}_{args.decoding}.csv", index=False)
+
+######## SANITY CHECKS ########
+
+def check_max_token_len(args, split_type='train'):
+    # load data 
+    if split_type == 'train':
+        data = construct_data(split_path='train')
+    elif split_type == 'testset':
+        data = construct_data(split_path='testset')
+
+    tokenizer = AutoTokenizer.from_pretrained(args.base_model)
+    tokenizer.pad_token = tokenizer.eos_token
+    tokenizer.padding_side = "right"
+    max_len_full_prompt = 0
+    max_len_full_output = 0
+    for sample in tqdm(data, total = len(data)):
+        input_sample = sample['prompt'] + sample['output'] + tokenizer.eos_token
+        tokenized = tokenizer.encode(input_sample)
+        tokenize_output = tokenizer.encode(sample['output'])
+        max_len_full_prompt = max(max_len_full_prompt, len(tokenized))
+        max_len_full_output = max(max_len_full_output, len(tokenize_output))
+    
+    print('#### Split Type: {} ####'.format(split_type))
+    print(f"Maximum tokenized length: {max_len_full_prompt}")
+    print(f"Maximum tokenized length: {max_len_full_output}")
+
+def perform_sanity_checks(args):
+    # check maximum tokenized length of the inputs 
+    check_max_token_len(args, split_type='train')
+    check_max_token_len(args, split_type='testset')
+
+
+######## MAIN ########
+
+
 def add_params():
     parser = argparse.ArgumentParser()
     # Modes
@@ -252,18 +321,28 @@ def main():
     # add params
     args = add_params()
 
-    # model, tokenizer = get_model('codellama/CodeLlama-7b-Instruct-hf', None, None, False, False)
     # construct data
     print('#### Constructing Data ####')
-    all_data = construct_data()
+    all_train_data = construct_data(split_path='train')
+
+    # # perform sanity checks
+    # perform_sanity_checks(args)
+
     # split into train and val (80-20)
-    train_data, val_data = train_test_split(all_data, test_size=0.2, random_state=37)
+    train_data, val_data = train_test_split(all_train_data, test_size=0.2, random_state=37)
+
 
     if args.wandb:
-        print('NOT YET IMPLEMENTED')
+        wandb.init(
+            project="socratic-guidance",
+            group='sft-dpo',
+            config=args
+        )
     
     if args.sft:
         sft(args, train_data, val_data)
+    elif args.generate:
+        generate(args)
 
 
 if __name__ == '__main__':

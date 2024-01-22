@@ -84,8 +84,6 @@ def get_model(base_model_name: str, model_name: Optional[str], pt_model_name: Op
     return model, tokenizer
 
 
-
-
 ######## DATA ########
 
 def construct_prompt(metadata, input_dialouge):
@@ -136,9 +134,12 @@ def construct_data(split_path: str):
             # construct prompt
             fix_prompt = construct_prompt(metadata, dialouge)
             # # fix_prompt = 'pseudo prompt change this'
-            for good_output in good_outputs_list[ctr]:
-                # append to all data
-                all_data.append({'prompt': fix_prompt, 'output': good_output+'</CONVERSATION>'})
+            if split_path == 'testset':
+                all_data.append({'prompt': fix_prompt, 'output': str(good_outputs_list[ctr])})
+            else:
+                for good_output in good_outputs_list[ctr]:
+                    # append to all data
+                    all_data.append({'prompt': fix_prompt, 'output': good_output+'</CONVERSATION>'})
     
     return all_data
 
@@ -227,7 +228,7 @@ def generate(args):
     Generate guidance using the trained model
     '''
     # construct test data
-    test_data = construct_data(split_path='testset')[:20]
+    test_data = construct_data(split_path='testset')
 
     assert args.model_name
 
@@ -303,7 +304,7 @@ def add_params():
     parser.add_argument("--beta", type=float, default=0.1, help="KL regularization coefficient for DPO training")
     parser.add_argument("--mmo", type=int, default=1, help="Mismatch outer rate for DPO training")
     parser.add_argument("--decoding", type=str, choices=["greedy", "sample"], default="greedy", help="Decoding strategy for generation")
-    parser.add_argument("--max_gen_tokens", type=int, default=128) # TODO: see what max size of question
+    parser.add_argument("--max_gen_tokens", type=int, default=256) # TODO: see what max size of question
     parser.add_argument("--batch_size", type=int, default=2)
     parser.add_argument("--grad_accum_steps", type=int, default=32)
     parser.add_argument("--epochs", type=int, default=5)

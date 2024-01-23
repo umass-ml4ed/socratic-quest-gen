@@ -248,13 +248,16 @@ def generate(args):
             max_new_tokens=args.max_gen_tokens,
             **generate_args
         )
-        preds = tokenizer.batch_decode(output_ids[:, batch["input_ids"].shape[1]:], skip_special_tokens=False)
+        preds = tokenizer.batch_decode(output_ids[:, batch["input_ids"].shape[1]:], skip_special_tokens=True)
         results += [{**sample, "prediction": pred} for sample, pred in zip(batch["meta_data"], preds)]
         # results += [{"prediction": pred} for pred in preds]
     results_df = pd.DataFrame(results)
     if not os.path.exists('results'):
         os.makedirs('results')
-    results_df.to_csv(f"results/qg_results_{args.model_name}_{args.decoding}.csv", index=False)
+    
+    save_model_name = args.model_name.replace('/', '_')
+
+    results_df.to_csv(f"results/qg_results_{save_model_name}_{args.decoding}.csv", index=False)
 
 ######## SANITY CHECKS ########
 

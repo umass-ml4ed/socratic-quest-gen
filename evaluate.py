@@ -125,12 +125,18 @@ def process_pred(pred_str):
     '''
     extracts the predictied socratic guidance 
     '''
-    # remove </CONVERSATION>
-    pred_str = pred_str.split('</CONVERSATION>')[0]
-    # remove all </s>
-    pred_str = pred_str.replace('</s>', '')
+    # convert to list
+    pred_str_list = literal_eval(pred_str)
+    clean_pred_str_list = []
+    for pred_str in pred_str_list:
+        # remove </CONVERSATION>
+        pred_str = pred_str.split('</CONVERSATION>')[0]
+        # remove all </s>
+        pred_str = pred_str.replace('</s>', '')
+        # add to clean list
+        clean_pred_str_list.append(pred_str)
 
-    return pred_str
+    return clean_pred_str_list
 
 def main():
 
@@ -143,10 +149,11 @@ def main():
     for i, row in df.iterrows():
         gt_output_str = row['output']
         gt_out_lst = literal_eval(gt_output_str)
-        pred_str = process_pred(row['prediction'])
+        pred_str_lst = process_pred(row['prediction'])
         # append data to lists
         gt_outputs.append(gt_out_lst)
-        pred_outputs.append([pred_str])
+        pred_outputs.append(pred_str_lst)
+    
 
     # print('Sample Outputs')
     # print(gt_outputs[0])

@@ -223,6 +223,42 @@ def sft(args, train_data, val_data):
     trainer.train()
     trainer.save_model()
 
+# def generate(args):
+#     '''
+#     Generate guidance using the trained model
+#     '''
+#     # construct test data
+#     test_data = construct_data(split_path='testset')
+
+#     assert args.model_name
+
+#     model, tokenizer = get_model(args.base_model, args.model_name, args.pt_model_name, False, True)
+#     # print('Maximum context length:', model.config.max_position_embeddings) 16k tokens
+#     # print('eos token: ', tokenizer.eos_token) # </s>
+#     tokenizer.padding_side = "left"
+#     test_dataset = QGSFTDataset(test_data)
+#     test_loader = DataLoader(test_dataset, batch_size=args.batch_size, collate_fn=QGSFTCollator(tokenizer, True))
+#     generate_args = {"do_sample": False} if args.decoding == "greedy" else {"do_sample": True, "top_p": 0.9, "temperature": 1.0}
+#     results = []
+#     for batch in tqdm(test_loader):
+#         output_ids = model.generate(
+#             input_ids=batch["input_ids"],
+#             attention_mask=batch["attention_mask"],
+#             pad_token_id=tokenizer.eos_token_id,
+#             max_new_tokens=args.max_gen_tokens,
+#             **generate_args
+#         )
+#         preds = tokenizer.batch_decode(output_ids[:, batch["input_ids"].shape[1]:], skip_special_tokens=True)
+#         results += [{**sample, "prediction": pred} for sample, pred in zip(batch["meta_data"], preds)]
+#         # results += [{"prediction": pred} for pred in preds]
+#     results_df = pd.DataFrame(results)
+#     if not os.path.exists('results'):
+#         os.makedirs('results')
+    
+#     save_model_name = args.model_name.replace('/', '_')
+
+#     results_df.to_csv(f"results/qg_results_{save_model_name}_{args.decoding}.csv", index=False)
+
 def generate(args):
     '''
     Generate guidance using the trained model
@@ -238,7 +274,14 @@ def generate(args):
     tokenizer.padding_side = "left"
     test_dataset = QGSFTDataset(test_data)
     test_loader = DataLoader(test_dataset, batch_size=args.batch_size, collate_fn=QGSFTCollator(tokenizer, True))
-    generate_args = {"do_sample": False} if args.decoding == "greedy" else {"do_sample": True, "top_p": 0.9, "temperature": 1.0}
+
+    k = args.num_sequences
+
+    if args.decoding == "greedy":
+        generate_args = {"do_sample": False}
+    else:
+        generate_args = {"do_sample": True, "top_p": 0.9, "temperature": 1.0, "num_return_sequences": k}
+    
     results = []
     for batch in tqdm(test_loader):
         output_ids = model.generate(
@@ -248,7 +291,15 @@ def generate(args):
             max_new_tokens=args.max_gen_tokens,
             **generate_args
         )
-        preds = tokenizer.batch_decode(output_ids[:, batch["input_ids"].shape[1]:], skip_special_tokens=True)
+
+        if args.decoding == "greedy":
+            preds = [[tokenizer.decode(output_id, skip_special_tokens=True)] for output_id in output_ids[:, batch["input_ids"].shape[1]:]]
+        else:
+            # Reshape output to (batch_size, num_return_sequences, seq_len)
+            output_ids = output_ids.view(args.batch_size, k, -1)
+            # Convert the output ids to strings
+            preds = [[tokenizer.decode(output_id, skip_special_tokens=True) for output_id in output_ids[:, batch["input_ids"].shape[1]:]] for output_ids in output_ids]
+
         results += [{**sample, "prediction": pred} for sample, pred in zip(batch["meta_data"], preds)]
         # results += [{"prediction": pred} for pred in preds]
     results_df = pd.DataFrame(results)
@@ -257,7 +308,10 @@ def generate(args):
     
     save_model_name = args.model_name.replace('/', '_')
 
-    results_df.to_csv(f"results/qg_results_{save_model_name}_{args.decoding}.csv", index=False)
+    suffix = args.decoding + '_{:d}'.format(k) if args.decoding == "sample" else args.decoding
+
+    results_df.to_csv(f"results/qg_results_{save_model_name}_{suffix}.csv", index=False)
+
 
 ######## SANITY CHECKS ########
 
@@ -307,7 +361,8 @@ def add_params():
     parser.add_argument("--beta", type=float, default=0.1, help="KL regularization coefficient for DPO training")
     parser.add_argument("--mmo", type=int, default=1, help="Mismatch outer rate for DPO training")
     parser.add_argument("--decoding", type=str, choices=["greedy", "sample"], default="greedy", help="Decoding strategy for generation")
-    parser.add_argument("--max_gen_tokens", type=int, default=256) # TODO: see what max size of question
+    parser.add_argument("--max_gen_tokens", type=int, default=128) # TODO: see what max size of question
+    parser.add_argument("--num_sequences", type=int, default=10)
     parser.add_argument("--batch_size", type=int, default=2)
     parser.add_argument("--grad_accum_steps", type=int, default=32)
     parser.add_argument("--epochs", type=int, default=5)

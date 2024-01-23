@@ -109,7 +109,7 @@ You are given the following metadata:
     
     return fix_prompt
 
-def construct_data(split_path: str):
+def construct_data(split_path: str, preference_data=False):
     '''
     create a list of dictionaries for SFT
     '''
@@ -123,6 +123,9 @@ def construct_data(split_path: str):
     # good data 
     with open(os.path.join(data_path, 'good_outputs.json'), 'r') as infile:
         good_outputs_dict = json.load(infile)
+    # preference data
+    with open(os.path.join(data_path, 'preference_data.json'), 'r') as infile:
+        preference_data_dict = json.load(infile)
     
 
     all_data = []
@@ -130,16 +133,24 @@ def construct_data(split_path: str):
     for tr_file, metadata in tqdm(problem_metadata_dict.items(), total=len(problem_metadata_dict)):
         input_dialouges = input_dialouges_dict[tr_file]
         good_outputs_list = good_outputs_dict[tr_file]
+        preference_data_list = preference_data_dict[tr_file]
         for ctr, dialouge in enumerate(input_dialouges):
             # construct prompt
             fix_prompt = construct_prompt(metadata, dialouge)
-            # # fix_prompt = 'pseudo prompt change this'
-            if split_path == 'testset':
-                all_data.append({'prompt': fix_prompt, 'output': str(good_outputs_list[ctr])})
+            if not preference_data:
+                
+                if split_path == 'testset':
+                    all_data.append({'prompt': fix_prompt, 'output': str(good_outputs_list[ctr])})
+                else:
+                    for good_output in good_outputs_list[ctr]:
+                        # append to all data
+                        all_data.append({'prompt': fix_prompt, 'output': good_output+'</CONVERSATION>'})
             else:
-                for good_output in good_outputs_list[ctr]:
+                # create dataset for DPO training
+                for preference_tuples in preference_data_list[ctr]:
                     # append to all data
-                    all_data.append({'prompt': fix_prompt, 'output': good_output+'</CONVERSATION>'})
+                    all_data.append({'prompt': fix_prompt, 'chosen': str(preference_tuples[0])+'</CONVERSATION>', 'rejected': str(preference_tuples[1])+'</CONVERSATION>'})
+                
     
     return all_data
 
@@ -185,6 +196,19 @@ class QGSFTCollator:
             "labels": labels
         }
 
+class QGDPODataset(Dataset):
+    '''
+    QG Dataset
+    '''
+    def __init__(self, data: list):
+        self.data = data
+    
+    def __getitem__(self, index: int):
+        return self.data[index]
+
+    def __len__(self):
+        return len(self.data)
+
 
 ######## TRAINING ########
 
@@ -210,8 +234,17 @@ def get_training_args(args):
         report_to="wandb" if args.wandb else "none"
     )
 
-def sft(args, train_data, val_data):
+def sft(args):
     assert args.model_name
+
+
+    # construct data
+    print('#### Constructing Data ####')
+    all_train_data = construct_data(split_path='train')
+
+    # split into train and val (80-20)
+    train_data, val_data = train_test_split(all_train_data, test_size=0.2, random_state=37)
+
     model, tokenizer = get_model(args.base_model, None, None, False, False)
     trainer = Trainer(
         model=model,
@@ -222,6 +255,47 @@ def sft(args, train_data, val_data):
     )
     trainer.train()
     trainer.save_model()
+
+def dpo(args):
+    '''
+    train model with DPO objective
+    '''
+    assert args.model_name and args.pt_model_name
+
+    model, tokenizer = get_model(args.base_model, None, args.pt_model_name, False, False)
+
+    # construct data 
+    print('#### Constructing Data ####')
+    preference_data = construct_data(split_path='train', preference_data=True)
+    # split into train and val
+    train_data, val_data = train_test_split(preference_data, test_size=0.2, random_state=37)
+
+
+    train_preference_dataset = QGDPODataset(train_data)
+    val_preference_dataset = QGDPODataset(val_data)
+
+
+    # NOTE: Change args.model_name to save model in different directory
+    args.model_name = args.model_name + '_dpo'
+
+    # TODO: try alternative loss functions
+    trainer = DPOTrainer(
+        model,
+        args=get_training_args(args),
+        beta=args.beta,
+        train_dataset=HFDataset.from_list(train_preference_dataset.data),
+        eval_dataset=HFDataset.from_list(val_preference_dataset.data),
+        tokenizer=tokenizer,
+        generate_during_eval=False,
+        precompute_ref_log_probs=True, # Avoid re-calculating reference model log probs every epoch
+        max_length=4096,
+        max_prompt_length=4096
+    )
+    # NOTE: will get "Could not estimate the number of tokens of the input, floating-point operations will not be computed"
+    #       but not an issue since only used for logging
+    trainer.train()
+    trainer.save_model()
+
 
 def generate(args):
     '''
@@ -315,7 +389,6 @@ def add_params():
     parser = argparse.ArgumentParser()
     # Modes
     parser.add_argument("--sft", action="store_true", help="Supervised finetuning for feedback generation")
-    parser.add_argument("--ppo", action="store_true", help="PPO training with reward model for feedback generation")
     parser.add_argument("--dpo", action="store_true", help="DPO training with GPT-4 annotations for feedback generation")
     parser.add_argument("--generate", action="store_true", help="Generate feedback with trained model")
     # Settings
@@ -344,17 +417,6 @@ def main():
     # add params
     args = add_params()
 
-    # construct data
-    print('#### Constructing Data ####')
-    all_train_data = construct_data(split_path='train')
-
-    # # perform sanity checks
-    # perform_sanity_checks(args)
-
-    # split into train and val (80-20)
-    train_data, val_data = train_test_split(all_train_data, test_size=0.2, random_state=37)
-
-
     if args.wandb:
         wandb.init(
             project="socratic-guidance",
@@ -363,7 +425,9 @@ def main():
         )
     
     if args.sft:
-        sft(args, train_data, val_data)
+        sft(args)
+    elif args.dpo:
+        dpo(args)
     elif args.generate:
         generate(args)
 

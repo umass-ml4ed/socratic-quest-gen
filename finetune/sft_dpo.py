@@ -223,42 +223,6 @@ def sft(args, train_data, val_data):
     trainer.train()
     trainer.save_model()
 
-# def generate(args):
-#     '''
-#     Generate guidance using the trained model
-#     '''
-#     # construct test data
-#     test_data = construct_data(split_path='testset')
-
-#     assert args.model_name
-
-#     model, tokenizer = get_model(args.base_model, args.model_name, args.pt_model_name, False, True)
-#     # print('Maximum context length:', model.config.max_position_embeddings) 16k tokens
-#     # print('eos token: ', tokenizer.eos_token) # </s>
-#     tokenizer.padding_side = "left"
-#     test_dataset = QGSFTDataset(test_data)
-#     test_loader = DataLoader(test_dataset, batch_size=args.batch_size, collate_fn=QGSFTCollator(tokenizer, True))
-#     generate_args = {"do_sample": False} if args.decoding == "greedy" else {"do_sample": True, "top_p": 0.9, "temperature": 1.0}
-#     results = []
-#     for batch in tqdm(test_loader):
-#         output_ids = model.generate(
-#             input_ids=batch["input_ids"],
-#             attention_mask=batch["attention_mask"],
-#             pad_token_id=tokenizer.eos_token_id,
-#             max_new_tokens=args.max_gen_tokens,
-#             **generate_args
-#         )
-#         preds = tokenizer.batch_decode(output_ids[:, batch["input_ids"].shape[1]:], skip_special_tokens=True)
-#         results += [{**sample, "prediction": pred} for sample, pred in zip(batch["meta_data"], preds)]
-#         # results += [{"prediction": pred} for pred in preds]
-#     results_df = pd.DataFrame(results)
-#     if not os.path.exists('results'):
-#         os.makedirs('results')
-    
-#     save_model_name = args.model_name.replace('/', '_')
-
-#     results_df.to_csv(f"results/qg_results_{save_model_name}_{args.decoding}.csv", index=False)
-
 def generate(args):
     '''
     Generate guidance using the trained model

@@ -123,9 +123,10 @@ def construct_data(split_path: str, preference_data=False):
     # good data 
     with open(os.path.join(data_path, 'good_outputs.json'), 'r') as infile:
         good_outputs_dict = json.load(infile)
-    # preference data
-    with open(os.path.join(data_path, 'preference_data.json'), 'r') as infile:
-        preference_data_dict = json.load(infile)
+    if preference_data:
+        # preference data
+        with open(os.path.join(data_path, 'preference_data.json'), 'r') as infile:
+            preference_data_dict = json.load(infile)
     
 
     all_data = []
@@ -133,7 +134,6 @@ def construct_data(split_path: str, preference_data=False):
     for tr_file, metadata in tqdm(problem_metadata_dict.items(), total=len(problem_metadata_dict)):
         input_dialouges = input_dialouges_dict[tr_file]
         good_outputs_list = good_outputs_dict[tr_file]
-        preference_data_list = preference_data_dict[tr_file]
         for ctr, dialouge in enumerate(input_dialouges):
             # construct prompt
             fix_prompt = construct_prompt(metadata, dialouge)
@@ -146,6 +146,7 @@ def construct_data(split_path: str, preference_data=False):
                         # append to all data
                         all_data.append({'prompt': fix_prompt, 'output': good_output+'</CONVERSATION>'})
             else:
+                preference_data_list = preference_data_dict[tr_file]
                 # create dataset for DPO training
                 for preference_tuples in preference_data_list[ctr]:
                     # append to all data
@@ -289,7 +290,8 @@ def dpo(args):
         generate_during_eval=False,
         precompute_ref_log_probs=True, # Avoid re-calculating reference model log probs every epoch
         max_length=4096,
-        max_prompt_length=4096
+        max_prompt_length=4096,
+        max_target_length = args.max_gen_tokens
     )
     # NOTE: will get "Could not estimate the number of tokens of the input, floating-point operations will not be computed"
     #       but not an issue since only used for logging
@@ -398,7 +400,7 @@ def add_params():
     parser.add_argument("--beta", type=float, default=0.1, help="KL regularization coefficient for DPO training")
     parser.add_argument("--mmo", type=int, default=1, help="Mismatch outer rate for DPO training")
     parser.add_argument("--decoding", type=str, choices=["greedy", "sample"], default="greedy", help="Decoding strategy for generation")
-    parser.add_argument("--max_gen_tokens", type=int, default=128) # TODO: see what max size of question
+    parser.add_argument("--max_gen_tokens", type=int, default=128) # TODO: max size of guidance 100 (in testset)
     parser.add_argument("--num_sequences", type=int, default=10)
     parser.add_argument("--batch_size", type=int, default=2)
     parser.add_argument("--grad_accum_steps", type=int, default=32)

@@ -131,6 +131,8 @@ def process_pred(pred_str):
     for pred_str in pred_str_list:
         # remove </CONVERSATION>
         pred_str = pred_str.split('</CONVERSATION>')[0]
+        # remove everything after User
+        pred_str = pred_str.split('User')[0].strip()
         # remove all </s>
         pred_str = pred_str.replace('</s>', '')
         # add to clean list
@@ -140,7 +142,7 @@ def process_pred(pred_str):
 
 def main():
 
-    result_file = 'results/qg_results_codellama_sft_b2_greedy.csv'
+    result_file = 'results/qg_results_codellama_sft_b2_ep2_dpo_checkpoint-79_greedy.csv'
     df = pd.read_csv(result_file)
 
     gt_outputs = [] # list of list of str

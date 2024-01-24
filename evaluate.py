@@ -4,6 +4,7 @@ script for evaluating the results based on the original paper
 
 import json
 import os
+import argparse
 import sys
 from tqdm import tqdm
 from ast import literal_eval
@@ -140,9 +141,16 @@ def process_pred(pred_str):
 
     return clean_pred_str_list
 
-def main():
+def add_params():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--result_file', type=str, default='qg_results_codellama_sft_b2_ep2_dpo_checkpoint-79_greedy.csv')
+    args = parser.parse_args()
+    return args
 
-    result_file = 'results/qg_results_codellama_sft_b2_ep2_dpo_checkpoint-79_greedy.csv'
+def main():
+    args = add_params()
+
+    result_file = 'results/{}'.format(args.result_file)
     df = pd.read_csv(result_file)
 
     gt_outputs = [] # list of list of str

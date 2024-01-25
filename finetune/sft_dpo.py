@@ -291,7 +291,7 @@ def dpo(args):
         precompute_ref_log_probs=True, # Avoid re-calculating reference model log probs every epoch
         max_length=4096,
         max_prompt_length=4096,
-        max_target_length = args.max_gen_tokens
+        # max_target_length = args.max_gen_tokens
     )
     # NOTE: will get "Could not estimate the number of tokens of the input, floating-point operations will not be computed"
     #       but not an issue since only used for logging

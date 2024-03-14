@@ -4,7 +4,9 @@ script for evaluating the results based on the original paper
 
 import json
 import os
+import string
 import argparse
+import random
 import sys
 from tqdm import tqdm
 from ast import literal_eval
@@ -127,9 +129,14 @@ def process_pred(pred_str):
     extracts the predictied socratic guidance 
     '''
     # convert to list
-    pred_str_list = literal_eval(pred_str)
+    try:
+        pred_str_list = literal_eval(pred_str)
+    except:
+        return [pred_str]
     clean_pred_str_list = []
     for pred_str in pred_str_list:
+        if type(pred_str) != str:
+            continue
         # remove </CONVERSATION>
         pred_str = pred_str.split('</CONVERSATION>')[0]
         # remove everything after User
@@ -138,12 +145,43 @@ def process_pred(pred_str):
         pred_str = pred_str.replace('</s>', '')
         # add to clean list
         clean_pred_str_list.append(pred_str)
+    
+    if len(clean_pred_str_list) > 1:
+        # return only 5 predcitions - chosen randomly 
+        return clean_pred_str_list[:5]
+    else:
+        return clean_pred_str_list
 
-    return clean_pred_str_list
+def process_zero_shot_pred(pred_str, cot=False):
+    '''
+    convert predictions into a list of predictions encoded in string
+    '''
+    # TODO: If cot then extract from Guidance: 
+    if cot:
+        pred_str = pred_str.split('Guidance: ')[1]
+    
+    pred_str = pred_str.replace("Let's", "Lets")
+
+    if pred_str[0] == '[':
+        clean_pred_str = pred_str
+    else:
+        # split by lines
+        pred_str_list = pred_str.split('\n')
+        clean_pred_str = '['
+        for pred in pred_str_list:
+            if pred != '':
+                # remove all punctuations from pred
+                pred = pred.translate(str.maketrans('', '', string.punctuation))
+                clean_pred_str += f'\"{pred}\",'
+        clean_pred_str = clean_pred_str[:-1] + ']'
+    return clean_pred_str
 
 def add_params():
     parser = argparse.ArgumentParser()
     parser.add_argument('--result_file', type=str, default='qg_results_codellama_sft_b2_ep2_dpo_checkpoint-79_greedy.csv')
+    # add boolean params
+    parser.add_argument('--zero', type=bool, default=False) # for zero-shot setting with llama
+    parser.add_argument('--cot', type=bool, default=False) # for zero-shot cot setting with llama
     args = parser.parse_args()
     return args
 
@@ -159,7 +197,11 @@ def main():
     for i, row in df.iterrows():
         gt_output_str = row['output']
         gt_out_lst = literal_eval(gt_output_str)
-        pred_str_lst = process_pred(row['prediction'])
+        if args.zero:
+            processed_str = process_zero_shot_pred(row['prediction'], args.cot)
+        else:
+            processed_str = row['prediction']
+        pred_str_lst = process_pred(processed_str)
         # append data to lists
         gt_outputs.append(gt_out_lst)
         pred_outputs.append(pred_str_lst)

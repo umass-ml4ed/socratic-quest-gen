@@ -1,5 +1,9 @@
 # Socratic Question Generation
 
+## Requirements 
+
+This codebase requires ```pytorch``` and ```huggingface``` to be installed which can be installed using ```pip```.
+
 ## Generate Invalid questions
 
 ```

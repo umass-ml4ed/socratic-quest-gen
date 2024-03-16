@@ -30,3 +30,11 @@ python zero-shot_llama_prompt.py
 ```
 
 This code takes an argument ```--prompt cot``` for chain-of-thought prompting.
+
+## Evaluate 
+
+```
+python evaluate.py --result_file <path_to_results_file>
+```
+
+Additionally, the code takes two arguments ```--zero True``` and ```--cot True``` for LLama zero-shot and CoT respectively. 

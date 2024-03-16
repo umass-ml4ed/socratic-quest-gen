@@ -165,7 +165,7 @@ def construct_data(split_path: str, prompt_type: str):
 
 def add_params():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--prompt", type=str, choices=["single", "five", "cot"], default="single", help="number of guidance to generate")
+    parser.add_argument("--prompt", type=str, choices=["single", "five", "cot"], default="five", help="number of guidance to generate")
     args = parser.parse_args()
     return args
 

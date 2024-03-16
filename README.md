@@ -18,7 +18,7 @@ The invalid questions are stored in ```bad_questions.json```. The classification
 ## Preference Optimization 
 
 ```
-python sft_dpo.py
+python finetune/sft_dpo.py
 ```
 
 This code takes several arguments which can be seen using the ```-h``` flag. ```--sft``` flag corresponds to standard fine-tuning and ```--dpo``` corresponds to direct preference optimization.

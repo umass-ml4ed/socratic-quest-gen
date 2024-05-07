@@ -23,6 +23,24 @@ python finetune/sft_dpo.py
 
 This code takes several arguments which can be seen using the ```-h``` flag. ```--sft``` flag corresponds to standard fine-tuning and ```--dpo``` corresponds to direct preference optimization.
 
+Some example commands include: 
+
+1. Standard Fine-Tuning 
+
+```
+python finetune/sft_dpo.py --sft --base_model codellama/CodeLlama-7b-Instruct-hf --model_name codellama_sft_b2 --batch_size 2 --grad_accum_steps 32 --epochs 5
+```
+
+2. DPO
+```
+python finetune/sft_dpo.py --dpo --base_model codellama/CodeLlama-7b-Instruct-hf --model_name codellama_sft_b2 --pt_model_name codellama_sft_b2 --batch_size 1 --grad_accum_steps 64 --epochs 2
+```
+
+3. Generate 
+```
+python finetune/sft_dpo.py --generate --model_name codellama_sft_b2_dpo --pt_model_name codellama_sft_b2 --decoding greedy
+```
+
 ## LLama Zero-Shot Experiments 
 
 ```
